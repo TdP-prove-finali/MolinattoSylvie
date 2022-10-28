@@ -1,0 +1,29 @@
+
+DATASET:
+   468 Female
+   532 Male
+   
+JobTitle:
+   Graphic Designer
+   Software Engineer
+   Warehouse Associate
+   IT
+   Sales Associate
+   Driver
+   Financial Analyst
+   Marketing Associate
+   Data Scientist
+   Manager
+   
+Education:
+  College
+  High School
+  Masters
+  PhD
+   
+  Analisi da effettuare:
+  - distribuzione dei generi nei vari lavori (segregazione orizzontale)
+  - livello di istruzione nei due generi
+  - distribuzione dei livelli di seniorità (segregazione verticale)
+  - distribuzione delle età
+  - calcolo della differenza di paga base e bonus nei diversi lavori per genere
