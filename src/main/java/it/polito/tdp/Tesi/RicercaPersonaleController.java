@@ -14,12 +14,13 @@ import it.polito.tdp.Tesi.model.Utente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 
 public class RicercaPersonaleController {
 	
-	Model model;
+	private Model model;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -29,6 +30,12 @@ public class RicercaPersonaleController {
 
     @FXML // fx:id="btnCerca"
     private Button btnCerca; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbBoxEducation"
+    private ComboBox<String> cmbBoxEducation; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbBoxSeniority"
+    private ComboBox<Integer> cmbBoxSeniority; // Value injected by FXMLLoader
 
     @FXML // fx:id="sldDataScientist"
     private Slider sldDataScientist; // Value injected by FXMLLoader
@@ -60,13 +67,17 @@ public class RicercaPersonaleController {
     @FXML // fx:id="sldWarehouseAssociate"
     private Slider sldWarehouseAssociate; // Value injected by FXMLLoader
 
-    @FXML // fx:id="txtResult"
-    private TextArea txtResult; // Value injected by FXMLLoader
+    @FXML // fx:id="txtResult1"
+    private TextArea txtResult1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="txtResult2"
+    private TextArea txtResult2; // Value injected by FXMLLoader
 
     @FXML
     void cercaTeamWork(ActionEvent event) {
+    	
 
-    	txtResult.clear();
+    	txtResult1.clear();
     	int numDataScientist=0;
     	int numDriver=0;
     	int numFinancialAnalyst=0;
@@ -74,8 +85,17 @@ public class RicercaPersonaleController {
     	int numIT=0;
     	int numManager=0;
     	int numMarketingAssociate=0;
+    	int numSalesAssociate=0;
     	int numSoftwareEngineer=0;
     	int numWarehouseAssociate=0;
+    	
+    
+    	if(this.cmbBoxSeniority.getValue()==null) {
+    		txtResult1.appendText("Seleziona un livello di 'Seniority'!");
+    		return;
+    	}
+    	
+    	int seniority=this.cmbBoxSeniority.getValue();
     	
     	ArrayList<String> professioniRicercate = new ArrayList<String>();
     			  
@@ -121,6 +141,14 @@ public class RicercaPersonaleController {
     	    	 professioniRicercate.add("Marketing Associate");
     	     }
       	}
+    	
+    	if(this.sldSalesAssociate.getValue()!=0) {
+    		numSalesAssociate=(int)(this.sldSalesAssociate.getValue());
+    		 for(int i=0;i<numSalesAssociate;i++) {
+    	    	 professioniRicercate.add("Sales Associate");
+    	     }
+      	}
+    	
     	if(this.sldSoftwareEngineer.getValue()!=0) {
     		numSoftwareEngineer=(int)(this.sldSoftwareEngineer.getValue());
     		 for(int i=0;i<numSoftwareEngineer;i++) {
@@ -134,17 +162,19 @@ public class RicercaPersonaleController {
     	     }
       	}
     	
-    	List<Utente> utenti = model.cercaTeamWork(professioniRicercate);
+    	List<Utente> utenti = model.cercaTeamWork(professioniRicercate, seniority);
     	for(Utente u : utenti) {
-    		this.txtResult.appendText(u+"\n");
+    		this.txtResult1.appendText(u+"\n");
     	}
     	
-    	
+
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert btnCerca != null : "fx:id=\"btnCerca\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbBoxEducation != null : "fx:id=\"cmbBoxEducation\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbBoxSeniority != null : "fx:id=\"cmbBoxSeniority\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldDataScientist != null : "fx:id=\"sldDataScientist\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldDriver != null : "fx:id=\"sldDriver\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldFinancialAnalyst != null : "fx:id=\"sldFinancialAnalyst\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
@@ -155,12 +185,23 @@ public class RicercaPersonaleController {
         assert sldSalesAssociate != null : "fx:id=\"sldSalesAssociate\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldSoftwareEngineer != null : "fx:id=\"sldSoftwareEngineer\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldWarehouseAssociate != null : "fx:id=\"sldWarehouseAssociate\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
-        assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert txtResult1 != null : "fx:id=\"txtResult1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert txtResult2 != null : "fx:id=\"txtResult2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
 
+    }
+    
+    public void setComboBox() {
+    	this.cmbBoxEducation.getItems().clear();
+    	this.cmbBoxEducation.getItems().addAll(this.model.getEducation());
+    	this.cmbBoxSeniority.getItems().clear();
+    	this.cmbBoxSeniority.getItems().addAll(this.model.getSeniority());
     }
     
     public void setModel(Model model) {
     	this.model=model;
+    	this.setComboBox();
     }
 
+
 }
+

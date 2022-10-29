@@ -34,13 +34,16 @@ public class Model {
 	private List<Utente> best;
 	List<Utente> utenti;
 	List<String> professioniRicercate;
+	List<String> education;
+	List<Integer> seniority;
 	
 	public Model() {
 		this.gpgDAO = new GenderGapDAO();
 		this.utenti = this.gpgDAO.getAll();
 		this.professioniRicercate = new ArrayList<String>();
+		this.education = this.gpgDAO.getEducations();
+		this.seniority = this.gpgDAO.getSeniorities();
 	}
-	
 	
 	public void Analizza(String jobTitle) {
 		
@@ -67,7 +70,7 @@ public class Model {
 		this.percMalePhD = (double)(this.gpgDAO.getNumberMaleEducation(jobTitle, "PhD"))/(double)(this.maleNumber)*100;
 	}
 	
-	public List<Utente> cercaTeamWork(List<String> professioniRicercate) {
+	public List<Utente> cercaTeamWork(List<String> professioniRicercate, int seniority) {
 		
 		this.best=new ArrayList<Utente>();
 		List<Utente> parziale = new ArrayList<Utente>();
@@ -77,18 +80,19 @@ public class Model {
 		
 		while(itr.hasNext()) {
 			Utente u = itr.next();
-			if(!professioniRicercate.contains(u.getJobTitle())) {
+			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority) {
 				itr.remove();
 			}
 		}
 		
 		Collections.sort(utenti);
-		ricorsione(parziale, professioniRicercateModificabile,0);
-		
+		System.out.println("Numero utenti : "+this.utenti.size()+"\n");
+		ricorsione(parziale, professioniRicercateModificabile,0, seniority);
+		System.out.println("Ricorsione terminata!\n");
 		return best;
 	}
 	
-	private void ricorsione(List<Utente> parziale, List<String> professioniRicercateModificabile, int livello){
+	private void ricorsione(List<Utente> parziale, List<String> professioniRicercateModificabile, int livello, int seniority){
 		
 		
 		// condizione di terminazione
@@ -109,19 +113,19 @@ public class Model {
 		}
 		
 		
-		if(professioniRicercateModificabile.contains(utenti.get(livello).getJobTitle()) && utenti.get(livello).getSeniority()>3) {
+		if(professioniRicercateModificabile.contains(utenti.get(livello).getJobTitle()) && utenti.get(livello).getSeniority()>=seniority) {
 			//provo ad aggiungere
 			parziale.add(utenti.get(livello));
 			professioniRicercateModificabile.remove(utenti.get(livello).getJobTitle());
-			ricorsione(parziale,professioniRicercateModificabile, livello+1);
+			ricorsione(parziale,professioniRicercateModificabile, livello+1, seniority);
 			
 			// provo a non aggiungere
 			professioniRicercateModificabile.add(parziale.get(parziale.size()-1).getJobTitle());
 			parziale.remove(parziale.size()-1);
-			ricorsione(parziale,professioniRicercateModificabile,livello+1);
+			ricorsione(parziale,professioniRicercateModificabile,livello+1, seniority);
 		}
 		
-		ricorsione(parziale,professioniRicercateModificabile,livello+1);
+		ricorsione(parziale,professioniRicercateModificabile,livello+1, seniority);
 		
 	
 	}
@@ -134,7 +138,6 @@ public class Model {
 		}
 		return totScore;
 	}
-
 
 	public List<String> getJobTitles(){
 		return this.gpgDAO.getJobTitles();
@@ -231,6 +234,22 @@ public class Model {
 
 	public double getPercMalePhD() {
 		return  Math.round(percMalePhD*100.0)/100.0;
+	}
+
+	public List<String> getEducation() {
+		return education;
+	}
+
+	public void setEducation(List<String> education) {
+		this.education = education;
+	}
+
+	public List<Integer> getSeniority() {
+		return seniority;
+	}
+
+	public void setSeniority(List<Integer> seniority) {
+		this.seniority = seniority;
 	}
 
 

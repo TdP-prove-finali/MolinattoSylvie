@@ -38,9 +38,9 @@ public class GenderGapDAO {
 		}
 	}
 	
-	public List<Utente> getDifferences(){
-		String sql = "SELECT * FROM gender_gap ";
-		List<Utente> result = new ArrayList<Utente>();
+    public List<Integer> getSeniorities(){
+    	String sql = "SELECT DISTINCT(Seniority) FROM gender_gap ORDER BY Seniority ";
+    	List<Integer> result = new ArrayList<Integer>();
 		Connection conn = DBConnect.getConnection();
 
 		try {
@@ -48,11 +48,8 @@ public class GenderGapDAO {
 			ResultSet res = st.executeQuery();
 			while (res.next()) {
 
-				Utente gpg = new Utente(res.getInt("Id"),res.getString("JobTitle"),
-						           res.getString("Gender"),res.getInt("Age"),res.getInt("PerfEval"),
-						           res.getString("Education"),res.getString("Dept"),
-						           res.getInt("Seniority"),res.getInt("BasePay"),res.getInt("Bonus"));
-				result.add(gpg);
+				Integer seniority = res.getInt("Seniority");
+				result.add(seniority);
 			}
 			res.close();
 			st.close();
@@ -63,8 +60,33 @@ public class GenderGapDAO {
 			e.printStackTrace();
 			return null;
 		}
-	}
+    }
 
+    
+    public List<String> getEducations(){
+    	String sql = "SELECT DISTINCT(Education) FROM gender_gap ORDER BY Education ";
+    	List<String> result = new ArrayList<String>();
+		Connection conn = DBConnect.getConnection();
+
+		try {
+			PreparedStatement st = conn.prepareStatement(sql);
+			ResultSet res = st.executeQuery();
+			while (res.next()) {
+
+				String education = res.getString("Education");
+				result.add(education);
+			}
+			res.close();
+			st.close();
+			conn.close();
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+    }
+    
 	public List<String> getJobTitles(){
 		String sql = "SELECT DISTINCT(jobTitle) FROM gender_gap ORDER BY jobTitle ";
 		List<String> result = new ArrayList<String>();
