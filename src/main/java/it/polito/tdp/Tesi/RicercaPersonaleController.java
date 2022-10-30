@@ -11,8 +11,12 @@ import java.util.ResourceBundle;
 
 import it.polito.tdp.Tesi.model.Model;
 import it.polito.tdp.Tesi.model.Utente;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
@@ -73,11 +77,20 @@ public class RicercaPersonaleController {
     @FXML // fx:id="txtResult2"
     private TextArea txtResult2; // Value injected by FXMLLoader
 
+    @FXML // fx:id="pieChartRicorsione1"
+    private PieChart pieChartRicorsione1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="pieChartRicorsione2"
+    private PieChart pieChartRicorsione2; // Value injected by FXMLLoader
+    
     @FXML
     void cercaTeamWork(ActionEvent event) {
     	
 
     	txtResult1.clear();
+    	txtResult2.clear();
+    	pieChartRicorsione1.getData().clear();
+    	pieChartRicorsione2.getData().clear();
     	int numDataScientist=0;
     	int numDriver=0;
     	int numFinancialAnalyst=0;
@@ -96,6 +109,26 @@ public class RicercaPersonaleController {
     	}
     	
     	int seniority=this.cmbBoxSeniority.getValue();
+    	
+    	String education=this.cmbBoxEducation.getValue();
+    	if(education==null || education=="") {
+    		txtResult1.appendText("Seleziona un titolo di studio!");
+    		return;
+    	}
+    	
+    	int educationGrade=0;
+		if(education.equals("College")) {
+			educationGrade=1;
+		}
+		else if(education.equals("High School")) {
+			educationGrade=2;
+		}
+		else if(education.equals("Master")){
+			educationGrade=3;
+		}
+		else if(education.equals("PhD")) {
+			educationGrade=4;
+		}
     	
     	ArrayList<String> professioniRicercate = new ArrayList<String>();
     			  
@@ -162,12 +195,57 @@ public class RicercaPersonaleController {
     	     }
       	}
     	
-    	List<Utente> utenti = model.cercaTeamWork(professioniRicercate, seniority);
+    	List<Utente> utenti = model.cercaTeamWork(professioniRicercate, seniority, educationGrade);
     	for(Utente u : utenti) {
     		this.txtResult1.appendText(u+"\n");
     	}
+    	double percDonne1=this.calcolaPercentuali(utenti);
+    	double percUomini1=100-percDonne1;
+    	ObservableList list1 = FXCollections.observableArrayList(
+                new PieChart.Data("Percentuale uomini = "+percUomini1+" %", percUomini1),
+                new PieChart.Data("Percentuale donne = "+percDonne1+" %", percDonne1));
+        pieChartRicorsione1.setData(list1);
+        pieChartRicorsione1.setClockwise(true); 
+        pieChartRicorsione1.setLabelsVisible(true);
+        pieChartRicorsione1.setStartAngle(180);     
+        pieChartRicorsione1.setLegendVisible(true); 
+        pieChartRicorsione1.setVisible(true);
+        pieChartRicorsione1.setLabelLineLength(10);
+        pieChartRicorsione1.setLegendSide(Side.RIGHT);
+    	
+    	List<Utente> utentiEqui = model.cercaTeamWorkEquo(professioniRicercate, seniority, educationGrade);
+    	for(Utente u : utentiEqui) {
+    		this.txtResult2.appendText(u+"\n");
+    	}
+    	double percDonne2=this.calcolaPercentuali(utentiEqui);
+    	double percUomini2=100-percDonne2;
+    	ObservableList list2 = FXCollections.observableArrayList(
+                new PieChart.Data("Percentuale uomini = "+percUomini2+" %", percUomini2),
+                new PieChart.Data("Percentuale donne = "+percDonne2+" %", percDonne2));
+        pieChartRicorsione2.setData(list2);
+        pieChartRicorsione2.setClockwise(true); 
+        pieChartRicorsione2.setLabelsVisible(true);
+        pieChartRicorsione2.setStartAngle(180);     
+        pieChartRicorsione2.setLegendVisible(true); 
+        pieChartRicorsione2.setVisible(true);
+        pieChartRicorsione2.setLabelLineLength(10);
+        pieChartRicorsione2.setLegendSide(Side.RIGHT);
+    	
+    	
     	
 
+    }
+    
+    public double calcolaPercentuali(List<Utente> utenti) {
+    	
+    	int numDonne=0;
+    	for(Utente u : utenti) {
+    		if(u.getGender().equals("Female")) {
+    			numDonne++;
+    		}
+    	}
+    	double percDonne=100*((double)(numDonne)/(double)(utenti.size()));
+    	return percDonne;
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -187,7 +265,8 @@ public class RicercaPersonaleController {
         assert sldWarehouseAssociate != null : "fx:id=\"sldWarehouseAssociate\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert txtResult1 != null : "fx:id=\"txtResult1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert txtResult2 != null : "fx:id=\"txtResult2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
-
+        assert pieChartRicorsione1 != null : "fx:id=\"pieChartRicorsione1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert pieChartRicorsione2 != null : "fx:id=\"pieChartRicorsione2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
     }
     
     public void setComboBox() {

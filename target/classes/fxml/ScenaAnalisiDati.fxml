@@ -49,7 +49,7 @@
                               </HBox>
                               <HBox alignment="CENTER" style="-fx-background-color: beige;">
                                  <children>
-                                    <PieChart fx:id="pieChart1" legendSide="RIGHT" prefHeight="150.0" prefWidth="375.0" style="-fx-border-color: black;" title="Percentuale di genere">
+                                    <PieChart fx:id="pieChart1" legendSide="RIGHT" prefHeight="150.0" prefWidth="555.0" style="-fx-border-color: green;" title="Percentuale di genere">
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </HBox.margin>
@@ -57,7 +57,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
                                     </PieChart>
-                                    <BarChart fx:id="barChart2" prefHeight="150.0" prefWidth="307.0" style="-fx-background-color: beige; -fx-border-color: black;" title="Età media">
+                                    <BarChart fx:id="barChart2" prefHeight="150.0" prefWidth="307.0" style="-fx-background-color: beige; -fx-border-color: green;" title="Età media">
                                       <xAxis>
                                         <CategoryAxis label="Genere" side="BOTTOM" fx:id="xAxis2" />
                                       </xAxis>
@@ -75,7 +75,7 @@
                               </HBox>
                               <HBox alignment="CENTER" style="-fx-background-color: beige;">
                                  <children>
-                                    <BarChart fx:id="barChart1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" prefHeight="200.0" prefWidth="346.0" style="-fx-background-color: beige; -fx-border-color: black;" title="Retribuzione annua media">
+                                    <BarChart fx:id="barChart1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" prefHeight="200.0" prefWidth="537.0" style="-fx-background-color: beige; -fx-border-color: green;" title="Retribuzione annua media">
                                       <xAxis>
                                         <CategoryAxis label="Genere" side="BOTTOM" fx:id="xAxis1" />
                                       </xAxis>
@@ -89,7 +89,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
                                     </BarChart>
-                                    <BarChart fx:id="barChartBonus" prefHeight="208.0" prefWidth="351.0" style="-fx-border-color: black;" title="Bonus annuo medio">
+                                    <BarChart fx:id="barChartBonus" prefHeight="208.0" prefWidth="351.0" style="-fx-border-color: green;" title="Bonus annuo medio">
                                       <xAxis>
                                         <CategoryAxis label="Genere" side="BOTTOM" fx:id="xAxisBonus" />
                                       </xAxis>
@@ -107,11 +107,11 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                  <children>
-                                    <PieChart fx:id="pieChart2" style="-fx-background-color: beige; -fx-border-color: black;" title="Istruzione femminile">
+                                    <PieChart fx:id="pieChart2" style="-fx-background-color: beige; -fx-border-color: green;" title="Istruzione femminile">
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </HBox.margin></PieChart>
-                                    <PieChart fx:id="pieChart3" style="-fx-border-color: black;" title="Istruzione maschile">
+                                    <PieChart fx:id="pieChart3" style="-fx-border-color: green;" title="Istruzione maschile">
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </HBox.margin></PieChart>

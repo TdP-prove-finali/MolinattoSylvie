@@ -70,7 +70,7 @@ public class Model {
 		this.percMalePhD = (double)(this.gpgDAO.getNumberMaleEducation(jobTitle, "PhD"))/(double)(this.maleNumber)*100;
 	}
 	
-	public List<Utente> cercaTeamWork(List<String> professioniRicercate, int seniority) {
+	public List<Utente> cercaTeamWork(List<String> professioniRicercate, int seniority, int educationGrade) {
 		
 		this.best=new ArrayList<Utente>();
 		List<Utente> parziale = new ArrayList<Utente>();
@@ -80,19 +80,22 @@ public class Model {
 		
 		while(itr.hasNext()) {
 			Utente u = itr.next();
-			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority) {
+			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()!=seniority || u.getEducationGrade()!=educationGrade) {
 				itr.remove();
 			}
 		}
 		
 		Collections.sort(utenti);
 		System.out.println("Numero utenti : "+this.utenti.size()+"\n");
-		ricorsione(parziale, professioniRicercateModificabile,0, seniority);
+		ricorsione(parziale, professioniRicercateModificabile,0);
 		System.out.println("Ricorsione terminata!\n");
+		for(Utente u : this.best) {
+			System.out.println(u+"\n");
+		}
 		return best;
 	}
 	
-	private void ricorsione(List<Utente> parziale, List<String> professioniRicercateModificabile, int livello, int seniority){
+	private void ricorsione(List<Utente> parziale, List<String> professioniRicercateModificabile, int livello){
 		
 		
 		// condizione di terminazione
@@ -101,7 +104,11 @@ public class Model {
 			if(calcolaTotScore(parziale)>calcolaTotScore(best)) {
 				this.best = new ArrayList<Utente>(parziale);
 				System.out.println(calcolaTotScore(best)+"\n");
+				for(Utente u : this.best) {
+					System.out.println(u+"\n");
+				}
 			}
+			return;
 		}
 		
 		if(this.utenti.size()==livello) {
@@ -110,26 +117,123 @@ public class Model {
 		
 		if(calcolaTotScore(best)==(this.professioniRicercate.size())*5) {
 			return;
-		}
+			
+		} 
 		
 		
-		if(professioniRicercateModificabile.contains(utenti.get(livello).getJobTitle()) && utenti.get(livello).getSeniority()>=seniority) {
+		if(professioniRicercateModificabile.contains(utenti.get(livello).getJobTitle()) && !parziale.contains(utenti.get(livello))) {
 			//provo ad aggiungere
 			parziale.add(utenti.get(livello));
 			professioniRicercateModificabile.remove(utenti.get(livello).getJobTitle());
-			ricorsione(parziale,professioniRicercateModificabile, livello+1, seniority);
+			ricorsione(parziale,professioniRicercateModificabile, livello+1);
 			
 			// provo a non aggiungere
 			professioniRicercateModificabile.add(parziale.get(parziale.size()-1).getJobTitle());
 			parziale.remove(parziale.size()-1);
-			ricorsione(parziale,professioniRicercateModificabile,livello+1, seniority);
+			ricorsione(parziale,professioniRicercateModificabile,livello+1);
 		}
 		
-		ricorsione(parziale,professioniRicercateModificabile,livello+1, seniority);
+		ricorsione(parziale,professioniRicercateModificabile,livello+1);
 		
 	
 	}
 	
+	
+	public List<Utente> cercaTeamWorkEquo(List<String> professioniRicercate, int seniority, int educationGrade) {
+		
+		this.best=new ArrayList<Utente>();
+		List<Utente> parziale = new ArrayList<Utente>();
+		this.professioniRicercate = professioniRicercate;
+		List<String> professioniRicercateModificabile = new ArrayList<String>();
+		professioniRicercateModificabile.addAll(professioniRicercate);
+		utenti.clear();
+		utenti = this.gpgDAO.getAll();
+		Iterator<Utente> itr = utenti.iterator();
+		
+		while(itr.hasNext()) {
+			Utente u = itr.next();
+			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()!=seniority || u.getEducationGrade()!=educationGrade) {
+				itr.remove();
+			}
+		}
+		
+		//Collections.sort(utenti);
+		System.out.println("Numero utenti : "+this.utenti.size()+"\n");
+		ricorsioneEqua(parziale, professioniRicercateModificabile,0);
+		System.out.println("Ricorsione terminata!\n");
+		for(Utente u : this.best) {
+			System.out.println(u+"\n");
+		}
+		return best;
+	}
+	
+	private void ricorsioneEqua(List<Utente> parziale, List<String> professioniRicercateModificabile, int livello){
+		
+		
+		// condizione di terminazione
+		if(professioniRicercateModificabile.size()==0) {
+			int score = calcolaTotScore(parziale);
+			// controllo se tale soluzione è la migliore
+			if(score>calcolaTotScore(best) && soluzioneEqua(parziale)) {
+				this.best = new ArrayList<Utente>(parziale);
+				System.out.println(calcolaTotScore(best)+"\n");
+				for(Utente u : this.best) {
+					System.out.println(u+"\n");
+				}
+				
+			}
+			return;
+		}
+		
+		if(this.utenti.size()==livello) {
+			return;
+		}
+		
+		if(soluzioneEqua(parziale) && parziale.size()==professioniRicercate.size()) {
+			return;
+		}
+		
+		if(calcolaTotScore(parziale)==(this.professioniRicercate.size())*5 && soluzioneEqua(parziale)) {
+			return;
+		} 
+		
+		
+		if(professioniRicercateModificabile.contains(utenti.get(livello).getJobTitle()) && !parziale.contains(utenti.get(livello))) {
+			//provo ad aggiungere
+			parziale.add(utenti.get(livello));
+			professioniRicercateModificabile.remove(utenti.get(livello).getJobTitle());
+			ricorsioneEqua(parziale,professioniRicercateModificabile, livello+1);
+			
+			// provo a non aggiungere
+			professioniRicercateModificabile.add(parziale.get(parziale.size()-1).getJobTitle());
+			parziale.remove(parziale.size()-1);
+			ricorsioneEqua(parziale,professioniRicercateModificabile,livello+1);
+		}
+		
+		ricorsioneEqua(parziale,professioniRicercateModificabile,livello+1);
+		
+	
+	}
+	
+	private boolean soluzioneEqua(List<Utente> parziale) {
+		
+		int numDonne=0;
+		
+		for(Utente u : parziale) {
+			if(u.getGender().equals("Female")) {
+				numDonne++;
+			}
+		}
+		
+		if(numDonne==parziale.size()/2) {
+				return true;
+			}
+		else {
+				return false;
+			}
+	}
+	
+
 	private int calcolaTotScore(List<Utente> parziale) {
 		
 		int totScore=0;

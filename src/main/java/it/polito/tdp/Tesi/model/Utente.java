@@ -11,13 +11,14 @@ public class Utente implements Comparable<Utente>{
 	int age;
 	int perfEval;
 	String education;
+	int educationGrade;
 	String dept;
 	int seniority;
 	int basePay;
 	int bonus;
 	
 	
-	public Utente(int id, String jobTitle, String gender, int age, int perfEval, String education, String dept,
+	public Utente(int id, String jobTitle, String gender, int age, int perfEval, String education, int educationGrade, String dept,
 			int seniority, int basePay, int bonus) {
 		super();
 		this.id = id;
@@ -26,6 +27,7 @@ public class Utente implements Comparable<Utente>{
 		this.age = age;
 		this.perfEval = perfEval;
 		this.education = education;
+		this.educationGrade = educationGrade;
 		this.dept = dept;
 		this.seniority = seniority;
 		this.basePay = basePay;
@@ -68,6 +70,13 @@ public class Utente implements Comparable<Utente>{
 	public void setEducation(String education) {
 		this.education = education;
 	}
+	public int getEducationGrade() {
+		return educationGrade;
+	}
+	public void setEducationGrade(int educationGrade) {
+		this.educationGrade = educationGrade;
+	}
+
 	public String getDept() {
 		return dept;
 	}
