@@ -49,6 +49,18 @@
                               </HBox>
                               <HBox alignment="CENTER" style="-fx-background-color: beige;">
                                  <children>
+                                    <TextArea fx:id="txtInfo" editable="false" prefHeight="47.0" prefWidth="885.0" style="-fx-border-color: green;">
+                                       <HBox.margin>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                    </TextArea>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" style="-fx-background-color: beige;">
+                                 <children>
                                     <PieChart fx:id="pieChart1" legendSide="RIGHT" prefHeight="150.0" prefWidth="555.0" style="-fx-border-color: green;" title="Percentuale di genere">
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -57,12 +69,15 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
                                     </PieChart>
-                                    <BarChart fx:id="barChart2" prefHeight="150.0" prefWidth="307.0" style="-fx-background-color: beige; -fx-border-color: green;" title="Età media">
+                                    <BarChart fx:id="barChart2" minHeight="200.0" prefHeight="150.0" prefWidth="307.0" style="-fx-background-color: beige; -fx-border-color: green;" title="Età media">
                                       <xAxis>
                                         <CategoryAxis label="Genere" side="BOTTOM" fx:id="xAxis2" />
                                       </xAxis>
                                       <yAxis>
-                                        <NumberAxis fx:id="yAxis2" label="Età media" side="LEFT" />
+                                        <NumberAxis fx:id="yAxis2" autoRanging="false" label="Età media" minorTickCount="0" minorTickLength="10.0" side="LEFT" tickLength="5.0" tickUnit="10.0">
+                                             <padding>
+                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                             </padding></NumberAxis>
                                       </yAxis>
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -75,12 +90,15 @@
                               </HBox>
                               <HBox alignment="CENTER" style="-fx-background-color: beige;">
                                  <children>
-                                    <BarChart fx:id="barChart1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" prefHeight="200.0" prefWidth="537.0" style="-fx-background-color: beige; -fx-border-color: green;" title="Retribuzione annua media">
+                                    <BarChart fx:id="barChart1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="275.0" prefHeight="250.0" prefWidth="537.0" style="-fx-background-color: beige; -fx-border-color: green;" title="Retribuzione annua media">
                                       <xAxis>
                                         <CategoryAxis label="Genere" side="BOTTOM" fx:id="xAxis1" />
                                       </xAxis>
                                       <yAxis>
-                                        <NumberAxis fx:id="yAxis1" label="Valore   [$/anno]&#10;&#10;" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="138.0" prefWidth="67.0" side="TOP" />
+                                        <NumberAxis fx:id="yAxis1" autoRanging="false" label="Valore   [$/anno]" minorTickCount="0" minorTickLength="30000.0" side="LEFT" tickLength="5.0" tickUnit="30000.0" upperBound="150000.0">
+                                             <padding>
+                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                             </padding></NumberAxis>
                                       </yAxis>
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -94,7 +112,10 @@
                                         <CategoryAxis label="Genere" side="BOTTOM" fx:id="xAxisBonus" />
                                       </xAxis>
                                       <yAxis>
-                                        <NumberAxis fx:id="yAxisBonus" label="Valore [$/anno]" side="LEFT" />
+                                        <NumberAxis fx:id="yAxisBonus" autoRanging="false" label="Valore [$/anno]" minorTickCount="0" minorTickLength="2000.0" side="LEFT" tickLength="5.0" tickUnit="2000.0" upperBound="10000.0">
+                                             <padding>
+                                                <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                             </padding></NumberAxis>
                                       </yAxis>
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -107,7 +128,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                  <children>
-                                    <PieChart fx:id="pieChart2" style="-fx-background-color: beige; -fx-border-color: green;" title="Istruzione femminile">
+                                    <PieChart fx:id="pieChart2" minHeight="200.0" style="-fx-background-color: beige; -fx-border-color: green;" title="Istruzione femminile">
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </HBox.margin></PieChart>
@@ -115,6 +136,46 @@
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </HBox.margin></PieChart>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: beige;">
+                                 <children>
+                                    <PieChart fx:id="pieChart4" minHeight="200.0" style="-fx-border-color: green;" title="Performance Evaluation Score femminile">
+                                       <HBox.margin>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                    </PieChart>
+                                    <PieChart fx:id="pieChart5" style="-fx-border-color: green;" title="Performance Evaluation Score maschile">
+                                       <HBox.margin>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                    </PieChart>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: beige;">
+                                 <children>
+                                    <PieChart fx:id="pieChart6" minHeight="200.0" style="-fx-border-color: green;" title="Seniority femminile">
+                                       <HBox.margin>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                    </PieChart>
+                                    <PieChart fx:id="pieChart7" style="-fx-border-color: green;" title="Seniority maschile">
+                                       <HBox.margin>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                    </PieChart>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" style="-fx-background-color: beige;">

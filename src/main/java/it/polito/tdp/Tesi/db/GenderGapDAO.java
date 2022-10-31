@@ -398,6 +398,62 @@ public class GenderGapDAO {
 			return -1;
 		}
 	}
+	
+	public int getNumPerfEvScore(String jobTitle, String gender, int performanceEvaluationScore) {
+		
+		String sql = "SELECT COUNT(*)as count "
+				+ "FROM gender_gap g "
+				+ "WHERE g.JobTitle=? AND g.Gender=? AND g.PerfEval=? ";
+		
+		Connection conn = DBConnect.getConnection();
+		int result;
+		
+		try {
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, jobTitle);
+			st.setString(2, gender);
+			st.setInt(3, performanceEvaluationScore);
+			ResultSet res = st.executeQuery();
+			res.next();
+			result = res.getInt("count");
+	        res.close();
+			st.close();
+			conn.close();
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	public int getNumSeniority(String jobTitle, String gender, int seniority) {
+		
+		String sql = "SELECT COUNT(*)as count "
+				+ "FROM gender_gap g "
+				+ "WHERE g.JobTitle=? AND g.Gender=? AND g.Seniority=? ";
+		
+		Connection conn = DBConnect.getConnection();
+		int result;
+		
+		try {
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, jobTitle);
+			st.setString(2, gender);
+			st.setInt(3, seniority);
+			ResultSet res = st.executeQuery();
+			res.next();
+			result = res.getInt("count");
+	        res.close();
+			st.close();
+			conn.close();
+			return result;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
 
 
 

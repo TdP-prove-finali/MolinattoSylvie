@@ -31,6 +31,26 @@ public class Model {
 	private double percMaleMasters;
 	private double percFemalePhD;
 	private double percMalePhD;
+	private double percFemale1;
+	private double percFemale2;
+	private double percFemale3;
+	private double percFemale4;
+	private double percFemale5;
+	private double percMale1;
+	private double percMale2;
+	private double percMale3;
+	private double percMale4;
+	private double percMale5;
+	private double percFemaleSen1;
+	private double percFemaleSen2;
+	private double percFemaleSen3;
+	private double percFemaleSen4;
+	private double percFemaleSen5;
+	private double percMaleSen1;
+	private double percMaleSen2;
+	private double percMaleSen3;
+	private double percMaleSen4;
+	private double percMaleSen5;
 	private List<Utente> best;
 	List<Utente> utenti;
 	List<String> professioniRicercate;
@@ -68,6 +88,26 @@ public class Model {
 		this.percMaleMasters = (double)(this.gpgDAO.getNumberMaleEducation(jobTitle, "Masters"))/(double)(this.maleNumber)*100;
 		this.percFemalePhD = (double)(this.gpgDAO.getNumberFemaleEducation(jobTitle, "PhD"))/(double)(this.femaleNumber)*100;
 		this.percMalePhD = (double)(this.gpgDAO.getNumberMaleEducation(jobTitle, "PhD"))/(double)(this.maleNumber)*100;
+		this.percFemale1 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Female",1))/(double)(this.femaleNumber)*100;
+		this.percFemale2 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Female",2))/(double)(this.femaleNumber)*100;
+		this.percFemale3 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Female",3))/(double)(this.femaleNumber)*100;
+		this.percFemale4 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Female",4))/(double)(this.femaleNumber)*100;
+		this.percFemale5 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Female",5))/(double)(this.femaleNumber)*100;
+		this.percMale1 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Male",1))/(double)(this.maleNumber)*100;
+		this.percMale2 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Male",2))/(double)(this.maleNumber)*100;
+		this.percMale3 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Male",3))/(double)(this.maleNumber)*100;
+		this.percMale4 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Male",4))/(double)(this.maleNumber)*100;
+		this.percMale5 = (double)(this.gpgDAO.getNumPerfEvScore(jobTitle,"Male",5))/(double)(this.maleNumber)*100;
+		this.percFemaleSen1 = (double)(this.gpgDAO.getNumSeniority(jobTitle, "Female", 1))/(double)(this.femaleNumber)*100;
+		this.percFemaleSen2 = (double)(this.gpgDAO.getNumSeniority(jobTitle, "Female", 2))/(double)(this.femaleNumber)*100;
+		this.percFemaleSen3 = (double)(this.gpgDAO.getNumSeniority(jobTitle, "Female", 3))/(double)(this.femaleNumber)*100;
+		this.percFemaleSen4 = (double)(this.gpgDAO.getNumSeniority(jobTitle, "Female", 4))/(double)(this.femaleNumber)*100;
+		this.percFemaleSen5 = (double)(this.gpgDAO.getNumSeniority(jobTitle, "Female", 5))/(double)(this.femaleNumber)*100;
+		this.percMaleSen1 = (double)(this.gpgDAO.getNumSeniority(jobTitle,"Male",1))/(double)(this.maleNumber)*100;
+		this.percMaleSen2 = (double)(this.gpgDAO.getNumSeniority(jobTitle,"Male",2))/(double)(this.maleNumber)*100;
+		this.percMaleSen3 = (double)(this.gpgDAO.getNumSeniority(jobTitle,"Male",3))/(double)(this.maleNumber)*100;
+		this.percMaleSen4 = (double)(this.gpgDAO.getNumSeniority(jobTitle,"Male",4))/(double)(this.maleNumber)*100;
+		this.percMaleSen5 = (double)(this.gpgDAO.getNumSeniority(jobTitle,"Male",5))/(double)(this.maleNumber)*100;
 	}
 	
 	public List<Utente> cercaTeamWork(List<String> professioniRicercate, int seniority, int educationGrade) {
@@ -356,5 +396,86 @@ public class Model {
 		this.seniority = seniority;
 	}
 
+	public double getPercFemale1() {
+		return  Math.round(percFemale1*100.0)/100.0;
+	}
+
+	public double getPercFemale2() {
+		return  Math.round(percFemale2*100.0)/100.0;
+	}
+
+	public double getPercFemale3() {
+		return  Math.round(percFemale3*100.0)/100.0;
+	}
+
+	public double getPercFemale4() {
+		return  Math.round(percFemale4*100.0)/100.0;
+	}
+
+	public double getPercFemale5() {
+		return  Math.round(percFemale5*100.0)/100.0;
+	}
+
+
+	public double getPercMale1() {
+		return  Math.round(percMale1*100.0)/100.0;
+	}
+
+	public double getPercMale2() {
+		return  Math.round(percMale2*100.0)/100.0;
+	}
+
+	public double getPercMale3() {
+		return  Math.round(percMale3*100.0)/100.0;
+	}
+
+	public double getPercMale4() {
+		return  Math.round(percMale4*100.0)/100.0;
+	}
+
+	public double getPercMale5() {
+		return  Math.round(percMale5*100.0)/100.0;
+	}
+	
+	public double getPercFemaleSen1() {
+		return  Math.round(percFemaleSen1*100.0)/100.0;
+	}
+
+	public double getPercFemaleSen2() {
+		return  Math.round(percFemaleSen2*100.0)/100.0;
+	}
+
+	public double getPercFemaleSen3() {
+		return  Math.round(percFemaleSen3*100.0)/100.0;
+	}
+
+	public double getPercFemaleSen4() {
+		return  Math.round(percFemaleSen4*100.0)/100.0;
+	}
+
+	public double getPercFemaleSen5() {
+		return  Math.round(percFemaleSen5*100.0)/100.0;
+	}
+
+
+	public double getPercMaleSen1() {
+		return  Math.round(percMaleSen1*100.0)/100.0;
+	}
+
+	public double getPercMaleSen2() {
+		return  Math.round(percMaleSen2*100.0)/100.0;
+	}
+
+	public double getPercMaleSen3() {
+		return  Math.round(percMaleSen3*100.0)/100.0;
+	}
+
+	public double getPercMaleSen4() {
+		return  Math.round(percMaleSen4*100.0)/100.0;
+	}
+
+	public double getPercMaleSen5() {
+		return  Math.round(percMale5*100.0)/100.0;
+	}
 
 }
