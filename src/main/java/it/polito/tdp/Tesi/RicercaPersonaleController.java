@@ -20,7 +20,11 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class RicercaPersonaleController {
 	
@@ -71,24 +75,85 @@ public class RicercaPersonaleController {
     @FXML // fx:id="sldWarehouseAssociate"
     private Slider sldWarehouseAssociate; // Value injected by FXMLLoader
 
-    @FXML // fx:id="txtResult1"
-    private TextArea txtResult1; // Value injected by FXMLLoader
+    @FXML // fx:id="txtResult"
+    private TextArea txtResult; // Value injected by FXMLLoader
 
-    @FXML // fx:id="txtResult2"
-    private TextArea txtResult2; // Value injected by FXMLLoader
+    @FXML // fx:id="tableColumnAge1"
+    private TableColumn<Utente, Integer> tableColumnAge1; // Value injected by FXMLLoader
 
+    @FXML // fx:id="tableColumnAge2"
+    private TableColumn<Utente, Integer> tableColumnAge2; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnDept1"
+    private TableColumn<Utente, String> tableColumnDept1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnDept2"
+    private TableColumn<Utente, String> tableColumnDept2; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnEdu1"
+    private TableColumn<Utente, String> tableColumnEdu1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnEdu2"
+    private TableColumn<Utente, String> tableColumnEdu2; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnGender1"
+    private TableColumn<Utente, String> tableColumnGender1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnGender2"
+    private TableColumn<Utente, String> tableColumnGender2; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnId1"
+    private TableColumn<Utente, Integer> tableColumnId1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnId2"
+    private TableColumn<Utente, Integer> tableColumnId2; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnJT1"
+    private TableColumn<Utente, String> tableColumnJT1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnJT2"
+    private TableColumn<Utente, String> tableColumnJT2; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnPES1"
+    private TableColumn<Utente, Integer> tableColumnPES1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnPES2"
+    private TableColumn<Utente, Integer> tableColumnPES2; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnSen1"
+    private TableColumn<Utente, Integer> tableColumnSen1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableColumnSen2"
+    private TableColumn<Utente, Integer> tableColumnSen2; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableView1"
+    private TableView<Utente> tableView1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="tableView2"
+    private TableView<Utente> tableView2; // Value injected by FXMLLoader
+    
     @FXML // fx:id="pieChartRicorsione1"
     private PieChart pieChartRicorsione1; // Value injected by FXMLLoader
 
     @FXML // fx:id="pieChartRicorsione2"
     private PieChart pieChartRicorsione2; // Value injected by FXMLLoader
     
+    @FXML // fx:id="txtField1"
+    private TextField txtField1; // Value injected by FXMLLoader
+
+    @FXML // fx:id="txtField2"
+    private TextField txtField2; // Value injected by FXMLLoader
+
+    
     @FXML
     void cercaTeamWork(ActionEvent event) {
     	
 
-    	txtResult1.clear();
-    	txtResult2.clear();
+    	txtResult.clear();
+    	txtField1.clear();
+    	txtField2.clear();
+    	tableView1.getItems().clear();
+    	tableView2.getItems().clear();
     	pieChartRicorsione1.getData().clear();
     	pieChartRicorsione2.getData().clear();
     	int numDataScientist=0;
@@ -104,7 +169,7 @@ public class RicercaPersonaleController {
     	
     
     	if(this.cmbBoxSeniority.getValue()==null) {
-    		txtResult1.appendText("Seleziona un livello di 'Seniority'!");
+    		txtResult.appendText("Seleziona un livello di 'Seniority'!");
     		return;
     	}
     	
@@ -112,7 +177,7 @@ public class RicercaPersonaleController {
     	
     	String education=this.cmbBoxEducation.getValue();
     	if(education==null || education=="") {
-    		txtResult1.appendText("Seleziona un titolo di studio!");
+    		txtResult.appendText("Seleziona un titolo di studio!");
     		return;
     	}
     	
@@ -196,9 +261,8 @@ public class RicercaPersonaleController {
       	}
     	
     	List<Utente> utenti = model.cercaTeamWork(professioniRicercate, seniority, educationGrade);
-    	for(Utente u : utenti) {
-    		this.txtResult1.appendText(u+"\n");
-    	}
+    	this.tableView1.setItems(FXCollections.observableArrayList(utenti));
+    	
     	double percDonne1=this.calcolaPercentuali(utenti);
     	double percUomini1=100-percDonne1;
     	ObservableList list1 = FXCollections.observableArrayList(
@@ -214,8 +278,10 @@ public class RicercaPersonaleController {
         pieChartRicorsione1.setLegendSide(Side.RIGHT);
     	
     	List<Utente> utentiEqui = model.cercaTeamWorkEquo(professioniRicercate, seniority, educationGrade);
-    	for(Utente u : utentiEqui) {
-    		this.txtResult2.appendText(u+"\n");
+    	this.tableView2.setItems(FXCollections.observableArrayList(utentiEqui));
+    	if(utentiEqui.size()==0) {
+    		txtResult.setText("Non è stato possibile calcolare un team work con una rappresentanza di genere equa con le specifiche richieste");
+    		txtResult.setStyle("-fx-text-fill: red;");
     	}
     	double percDonne2=this.calcolaPercentuali(utentiEqui);
     	double percUomini2=100-percDonne2;
@@ -231,9 +297,22 @@ public class RicercaPersonaleController {
         pieChartRicorsione2.setLabelLineLength(10);
         pieChartRicorsione2.setLegendSide(Side.RIGHT);
     	
-    	
+    	txtField1.appendText("Performance Evaluation Score medio : "+this.calcolaAvgPerfEval(utenti));
+    	txtField2.appendText("Performance Evaluation Score medio : "+this.calcolaAvgPerfEval(utentiEqui));
     	
 
+    }
+    
+    public double calcolaAvgPerfEval(List<Utente> utenti) {
+    	
+    	double somma=0;
+    	for(Utente u : utenti) {
+    		somma+=u.getPerfEval();
+    	}
+    	
+    	double media = somma/(double)(utenti.size());
+    	
+    	return Math.round(media*100.0)/100.0;
     }
     
     public double calcolaPercentuali(List<Utente> utenti) {
@@ -245,7 +324,7 @@ public class RicercaPersonaleController {
     		}
     	}
     	double percDonne=100*((double)(numDonne)/(double)(utenti.size()));
-    	return percDonne;
+    	return Math.round(percDonne*100.0)/100.0;
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -263,10 +342,45 @@ public class RicercaPersonaleController {
         assert sldSalesAssociate != null : "fx:id=\"sldSalesAssociate\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldSoftwareEngineer != null : "fx:id=\"sldSoftwareEngineer\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldWarehouseAssociate != null : "fx:id=\"sldWarehouseAssociate\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
-        assert txtResult1 != null : "fx:id=\"txtResult1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
-        assert txtResult2 != null : "fx:id=\"txtResult2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnAge1 != null : "fx:id=\"tableColumnAge1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnAge2 != null : "fx:id=\"tableColumnAge2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnDept1 != null : "fx:id=\"tableColumnDept1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnDept2 != null : "fx:id=\"tableColumnDept2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnEdu1 != null : "fx:id=\"tableColumnEdu1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnEdu2 != null : "fx:id=\"tableColumnEdu2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnGender1 != null : "fx:id=\"tableColumnGender1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnGender2 != null : "fx:id=\"tableColumnGender2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnId1 != null : "fx:id=\"tableColumnId1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnId2 != null : "fx:id=\"tableColumnId2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnJT1 != null : "fx:id=\"tableColumnJT1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnJT2 != null : "fx:id=\"tableColumnJT2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnPES1 != null : "fx:id=\"tableColumnPES1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnPES2 != null : "fx:id=\"tableColumnPES2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnSen1 != null : "fx:id=\"tableColumnSen1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableColumnSen2 != null : "fx:id=\"tableColumnSen2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableView1 != null : "fx:id=\"tableView1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert tableView2 != null : "fx:id=\"tableView2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert txtField1 != null : "fx:id=\"txtField1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert txtField2 != null : "fx:id=\"txtField2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert pieChartRicorsione1 != null : "fx:id=\"pieChartRicorsione1\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert pieChartRicorsione2 != null : "fx:id=\"pieChartRicorsione2\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        this.tableColumnAge1.setCellValueFactory(new PropertyValueFactory<Utente,Integer>("age"));
+        this.tableColumnAge2.setCellValueFactory(new PropertyValueFactory<Utente,Integer>("age"));
+        this.tableColumnDept1.setCellValueFactory(new PropertyValueFactory<Utente,String>("dept"));
+        this.tableColumnDept2.setCellValueFactory(new PropertyValueFactory<Utente,String>("dept"));
+        this.tableColumnEdu1.setCellValueFactory(new PropertyValueFactory<Utente,String>("education"));
+        this.tableColumnEdu2.setCellValueFactory(new PropertyValueFactory<Utente,String>("education"));
+        this.tableColumnGender1.setCellValueFactory(new PropertyValueFactory<Utente,String>("gender"));
+        this.tableColumnGender2.setCellValueFactory(new PropertyValueFactory<Utente,String>("gender"));
+        this.tableColumnId1.setCellValueFactory(new PropertyValueFactory<Utente,Integer>("id"));
+        this.tableColumnId2.setCellValueFactory(new PropertyValueFactory<Utente,Integer>("id"));
+        this.tableColumnJT1.setCellValueFactory(new PropertyValueFactory<Utente,String>("jobTitle"));
+        this.tableColumnJT2.setCellValueFactory(new PropertyValueFactory<Utente,String>("jobTitle"));
+        this.tableColumnPES1.setCellValueFactory(new PropertyValueFactory<Utente,Integer>("perfEval"));
+        this.tableColumnPES2.setCellValueFactory(new PropertyValueFactory<Utente,Integer>("perfEval"));
+        this.tableColumnSen1.setCellValueFactory(new PropertyValueFactory<Utente,Integer>("seniority"));
+        this.tableColumnSen2.setCellValueFactory(new PropertyValueFactory<Utente,Integer>("seniority"));
     }
     
     public void setComboBox() {

@@ -120,7 +120,7 @@ public class Model {
 		
 		while(itr.hasNext()) {
 			Utente u = itr.next();
-			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()!=seniority || u.getEducationGrade()!=educationGrade) {
+			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority || u.getEducationGrade()!=educationGrade) {
 				itr.remove();
 			}
 		}
@@ -192,7 +192,7 @@ public class Model {
 		
 		while(itr.hasNext()) {
 			Utente u = itr.next();
-			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()!=seniority || u.getEducationGrade()!=educationGrade) {
+			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority || u.getEducationGrade()!=educationGrade) {
 				itr.remove();
 			}
 		}
@@ -226,10 +226,6 @@ public class Model {
 		}
 		
 		if(this.utenti.size()==livello) {
-			return;
-		}
-		
-		if(soluzioneEqua(parziale) && parziale.size()==professioniRicercate.size()) {
 			return;
 		}
 		

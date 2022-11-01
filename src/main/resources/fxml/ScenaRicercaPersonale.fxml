@@ -9,7 +9,10 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -32,10 +35,10 @@
          </font>
       </Label>
    </top>
-   <right>
-      <ScrollPane fitToWidth="true" BorderPane.alignment="CENTER">
+   <center>
+      <ScrollPane fitToWidth="true" maxHeight="1000000.0" prefViewportHeight="10000.0" BorderPane.alignment="CENTER">
          <content>
-            <TabPane prefHeight="853.0" prefWidth="1388.0" style="-fx-background-color: beige;">
+            <TabPane prefHeight="1000.0" prefWidth="1388.0" style="-fx-background-color: beige;">
                <tabs>
                   <Tab>
                      <content>
@@ -284,6 +287,18 @@
                                     </Button>
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <TextArea fx:id="txtResult" editable="false" minWidth="870.0" wrapText="true">
+                                       <padding>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </HBox.margin>
+                                    </TextArea>
+                                 </children>
+                              </HBox>
                               <HBox alignment="CENTER">
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" text="SOLUZIONE LIBERA " textFill="#05772b">
@@ -304,24 +319,44 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="CENTER">
                                  <children>
-                                    <TextArea fx:id="txtResult1" editable="false">
-                                       <padding>
-                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                                       </padding>
+                                    <TableView fx:id="tableView1" style="-fx-border-color: green; -fx-background-color: beige;">
+                                      <columns>
+                                        <TableColumn fx:id="tableColumnId1" prefWidth="75.0" text="ID" />
+                                        <TableColumn fx:id="tableColumnJT1" prefWidth="75.0" text="JOB TITLE" />
+                                          <TableColumn fx:id="tableColumnGender1" prefWidth="75.0" text="GENDER" />
+                                          <TableColumn fx:id="tableColumnAge1" prefWidth="75.0" text="AGE" />
+                                          <TableColumn fx:id="tableColumnPES1" prefWidth="75.0" text="PERFORMANCE EVALUATION SCORE" />
+                                          <TableColumn fx:id="tableColumnEdu1" prefWidth="75.0" text="EDUCATION" />
+                                          <TableColumn fx:id="tableColumnDept1" prefWidth="75.0" text="DEPARTMENT" />
+                                          <TableColumn fx:id="tableColumnSen1" prefWidth="75.0" text="SENIORITY" />
+                                      </columns>
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </HBox.margin>
-                                    </TextArea>
-                                    <TextArea fx:id="txtResult2" editable="false">
+                                       <padding>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                    </TableView>
+                                    <TableView fx:id="tableView2" style="-fx-border-color: green; -fx-background-color: beige;">
+                                      <columns>
+                                        <TableColumn fx:id="tableColumnId2" prefWidth="75.0" text="ID" />
+                                        <TableColumn fx:id="tableColumnJT2" prefWidth="75.0" text="JOB TITLE" />
+                                          <TableColumn fx:id="tableColumnGender2" prefWidth="75.0" text="GENDER" />
+                                          <TableColumn fx:id="tableColumnAge2" prefWidth="75.0" text="AGE" />
+                                          <TableColumn fx:id="tableColumnPES2" prefWidth="75.0" text="PERFORMANCE EVALUATION SCORE" />
+                                          <TableColumn fx:id="tableColumnEdu2" prefWidth="75.0" text="EDUCATION" />
+                                          <TableColumn fx:id="tableColumnDept2" prefWidth="75.0" text="DEPARTMENT" />
+                                          <TableColumn fx:id="tableColumnSen2" prefWidth="75.0" text="SENIORITY" />
+                                      </columns>
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </HBox.margin>
                                        <padding>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
-                                    </TextArea>
+                                    </TableView>
                                  </children>
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -344,6 +379,26 @@
                                     </PieChart>
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: beige;">
+                                 <children>
+                                    <TextField fx:id="txtField1" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="250.0">
+                                       <HBox.margin>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                    </TextField>
+                                    <TextField fx:id="txtField2" alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="250.0">
+                                       <HBox.margin>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                    </TextField>
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                      </content>
@@ -355,5 +410,5 @@
             </TabPane>
          </content>
       </ScrollPane>
-   </right>
+   </center>
 </BorderPane>
