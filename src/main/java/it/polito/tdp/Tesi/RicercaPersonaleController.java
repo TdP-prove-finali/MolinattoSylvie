@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.Tesi.model.Model;
+import it.polito.tdp.Tesi.model.Professione;
 import it.polito.tdp.Tesi.model.Utente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,11 +48,66 @@ public class RicercaPersonaleController {
     @FXML // fx:id="btnCerca"
     private Button btnCerca; // Value injected by FXMLLoader
 
-    @FXML // fx:id="cmbBoxEducation"
-    private ComboBox<String> cmbBoxEducation; // Value injected by FXMLLoader
+    @FXML // fx:id="cmbEdDS"
+    private ComboBox<String> cmbEdDS; // Value injected by FXMLLoader
 
-    @FXML // fx:id="cmbBoxSeniority"
-    private ComboBox<Integer> cmbBoxSeniority; // Value injected by FXMLLoader
+    @FXML // fx:id="cmbEdDriver"
+    private ComboBox<String> cmbEdDriver; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbEdFA"
+    private ComboBox<String> cmbEdFA; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbEdGD"
+    private ComboBox<String> cmbEdGD; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbEdIT"
+    private ComboBox<String> cmbEdIT; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbEdMA"
+    private ComboBox<String> cmbEdMA; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbEdManager"
+    private ComboBox<String> cmbEdManager; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbEdSA"
+    private ComboBox<String> cmbEdSA; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="cmbEdSE"
+    private ComboBox<String> cmbEdSE; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbEdWA"
+    private ComboBox<String> cmbEdWA; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenDS"
+    private ComboBox<Integer> cmbSenDS; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenDriver"
+    private ComboBox<Integer> cmbSenDriver; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenFA"
+    private ComboBox<Integer> cmbSenFA; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenGD"
+    private ComboBox<Integer> cmbSenGD; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenIT"
+    private ComboBox<Integer> cmbSenIT; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenMA"
+    private ComboBox<Integer> cmbSenMA; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenManager"
+    private ComboBox<Integer> cmbSenManager; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenSA"
+    private ComboBox<Integer> cmbSenSA; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenSE"
+    private ComboBox<Integer> cmbSenSE; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cmbSenWA"
+    private ComboBox<Integer> cmbSenWA; // Value injected by FXMLLoader
+
 
     @FXML // fx:id="sldDataScientist"
     private Slider sldDataScientist; // Value injected by FXMLLoader
@@ -156,7 +212,6 @@ public class RicercaPersonaleController {
     @FXML
     void cercaTeamWork(ActionEvent event) {
     	
-
     	txtResult.clear();
     	txtField1.clear();
     	txtField2.clear();
@@ -175,100 +230,200 @@ public class RicercaPersonaleController {
     	int numSoftwareEngineer=0;
     	int numWarehouseAssociate=0;
     	
-    
-    	if(this.cmbBoxSeniority.getValue()==null) {
-    		txtResult.appendText("Seleziona un livello di 'Seniority'!");
-    		return;
-    	}
-    	
-    	int seniority=this.cmbBoxSeniority.getValue();
-    	
-    	String education=this.cmbBoxEducation.getValue();
-    	if(education==null || education=="") {
-    		txtResult.appendText("Seleziona un titolo di studio!");
-    		return;
-    	}
-    	
-    	int educationGrade=0;
-		if(education.equals("College")) {
-			educationGrade=1;
-		}
-		else if(education.equals("High School")) {
-			educationGrade=2;
-		}
-		else if(education.equals("Masters")){
-			educationGrade=3;
-		}
-		else if(education.equals("PhD")) {
-			educationGrade=4;
-		}
-    	
-    	ArrayList<String> professioniRicercate = new ArrayList<String>();
+    	ArrayList<Professione> professioniRicercate = new ArrayList<Professione>();
     			  
-    	if(this.sldDataScientist.getValue()!=0) {
-    	     numDataScientist=(int)(this.sldDataScientist.getValue());
-    	     for(int i=0;i<numDataScientist;i++) {
-    	    	 professioniRicercate.add("Data Scientist");
-    	     }
-    	}	
-    	if(this.sldDriver.getValue()!=0) {
-    		numDriver=(int)(this.sldDriver.getValue());
-    		 for(int i=0;i<numDriver;i++) {
-    	    	 professioniRicercate.add("Driver");
-    	     }
-      	} 	
-    	if(this.sldFinancialAnalyst.getValue()!=0) {
-    		numFinancialAnalyst=(int)(this.sldFinancialAnalyst.getValue());
-    		 for(int i=0;i<numFinancialAnalyst;i++) {
-    	    	 professioniRicercate.add("Financial Analyst");
-    	     }
-      	}   	
-    	if(this.sldGraphicDesigner.getValue()!=0) {
-    		numGraphicDesigner=(int)(this.sldGraphicDesigner.getValue());
-    		 for(int i=0;i<numGraphicDesigner;i++) {
-    	    	 professioniRicercate.add("Graphic Designer");
-    	     }
-      	}
-    	if(this.sldIT.getValue()!=0) {
-    		numIT=(int)(this.sldIT.getValue());
-    		 for(int i=0;i<numIT;i++) {
-    	    	 professioniRicercate.add("IT");
-    	     }
-      	}
-    	if(this.sldManager.getValue()!=0) {
-    		numManager=(int)(this.sldManager.getValue());
-    		 for(int i=0;i<numManager;i++) {
-    	    	 professioniRicercate.add("Manager");
-    	     }
-      	}
-    	if(this.sldMarketingAssociate.getValue()!=0) {
-    		numMarketingAssociate=(int)(this.sldMarketingAssociate.getValue());
-    		 for(int i=0;i<numMarketingAssociate;i++) {
-    	    	 professioniRicercate.add("Marketing Associate");
-    	     }
-      	}
+    if(this.sldDataScientist.getValue()!=0) {
+   	     numDataScientist=(int)(this.sldDataScientist.getValue());
+   	     if(this.cmbEdDS.getValue()==null || this.cmbSenDS.getValue()==null) {
+   	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'Data Scientist'!");
+   	    	 return;
+   	     }
+   	     String education=this.cmbEdDS.getValue();
+   	     int seniority = this.cmbSenDS.getValue();
+   	     Professione p = new Professione("Data Scientist",seniority,education);
+   	     
+   	     for(int i=0;i<numDataScientist;i++) {
+   	    	 professioniRicercate.add(p);
+   	     }
+   	}
+    else {
+    	this.cmbEdDS.setValue(null);
+    	this.cmbSenDS.setValue(null);
+    }
+   	
+   	if(this.sldDriver.getValue()!=0) {
+   		numDriver=(int)(this.sldDriver.getValue());
+   		if(this.cmbEdDriver.getValue()==null || this.cmbSenDriver.getValue()==null) {
+  	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'Driver'!");
+  	    	 return;
+  	     }
+  	     String education=this.cmbEdDriver.getValue();
+  	     int seniority = this.cmbSenDriver.getValue();
+  	     Professione p = new Professione("Driver",seniority,education);
+  	     
+  	     for(int i=0;i<numDriver;i++) {
+  	    	 professioniRicercate.add(p);
+  	     }
+     }
+   	else {
+   		this.cmbEdDriver.setValue(null);
+   		this.cmbSenDriver.setValue(null);
+   	}
+   	
+   	if(this.sldFinancialAnalyst.getValue()!=0) {
+   		numFinancialAnalyst=(int)(this.sldFinancialAnalyst.getValue());
+   		if(this.cmbEdFA.getValue()==null || this.cmbSenFA.getValue()==null) {
+  	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'Financial Analyst'!");
+  	    	 return;
+  	     }
+  	     String education=this.cmbEdFA.getValue();
+  	     int seniority = this.cmbSenFA.getValue();
+  	     Professione p = new Professione("Financial Analyst",seniority,education);
+  	     
+  	     for(int i=0;i<numFinancialAnalyst;i++) {
+  	    	 professioniRicercate.add(p);
+  	     }
+     } 
+   	else {
+   		this.cmbEdFA.setValue(null);
+   		this.cmbSenFA.setValue(null);
+   	}
+   	
+   	if(this.sldGraphicDesigner.getValue()!=0) {
+   		numGraphicDesigner=(int)(this.sldGraphicDesigner.getValue());
+   		if(this.cmbEdGD.getValue()==null || this.cmbSenGD.getValue()==null) {
+  	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'Graphic Designer'!");
+  	    	 return;
+  	     }
+  	     String education=this.cmbEdGD.getValue();
+  	     int seniority = this.cmbSenGD.getValue();
+  	     Professione p = new Professione("Graphic Designer",seniority,education);
+  	     
+  	     for(int i=0;i<numGraphicDesigner;i++) {
+  	    	 professioniRicercate.add(p);
+  	     }
+     }
+   	else {
+   		this.cmbEdGD.setValue(null);
+   		this.cmbSenGD.setValue(null);
+   	}
+   	
+   	if(this.sldIT.getValue()!=0) {
+   		numIT=(int)(this.sldIT.getValue());
+   		if(this.cmbEdIT.getValue()==null || this.cmbSenIT.getValue()==null) {
+  	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'IT'!");
+  	    	 return;
+  	     }
+  	     String education=this.cmbEdIT.getValue();
+  	     int seniority = this.cmbSenIT.getValue();
+  	     Professione p = new Professione("IT",seniority,education);
+  	     
+  	     for(int i=0;i<numIT;i++) {
+  	    	 professioniRicercate.add(p);
+  	     }
+     }
+   	else {
+   		this.cmbEdIT.setValue(null);
+   		this.cmbSenIT.setValue(null);
+   	}
+   	
+   	if(this.sldManager.getValue()!=0) {
+   		numManager=(int)(this.sldManager.getValue());
+   		if(this.cmbEdManager.getValue()==null || this.cmbSenManager.getValue()==null) {
+  	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'Manager'!");
+  	    	 return;
+  	     }
+  	     String education=this.cmbEdManager.getValue();
+  	     int seniority = this.cmbSenManager.getValue();
+  	     Professione p = new Professione("Manager",seniority,education);
+  	     
+  	     for(int i=0;i<numManager;i++) {
+  	    	 professioniRicercate.add(p);
+  	     }
+     }
+   	else {
+   		this.cmbEdManager.setValue(null);
+   		this.cmbSenMA.setValue(null);
+   	}
+   	
+   	if(this.sldMarketingAssociate.getValue()!=0) {
+   		numMarketingAssociate=(int)(this.sldMarketingAssociate.getValue());
+   		if(this.cmbEdMA.getValue()==null || this.cmbSenMA.getValue()==null) {
+  	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'Marketing Associate'!");
+  	    	 return;
+  	     }
+  	     String education=this.cmbEdMA.getValue();
+  	     int seniority = this.cmbSenMA.getValue();
+  	     Professione p = new Professione("Marketing Associate",seniority,education);
+  	     
+  	     for(int i=0;i<numMarketingAssociate;i++) {
+  	    	 professioniRicercate.add(p);
+  	     }
+     }
+   	else {
+   		this.cmbEdMA.setValue(null);
+   		this.cmbSenMA.setValue(null);
+   	}
+   	
+	if(this.sldSalesAssociate.getValue()!=0) {
+   		numSalesAssociate=(int)(this.sldSalesAssociate.getValue());
+   		if(this.cmbEdSA.getValue()==null || this.cmbSenSA.getValue()==null) {
+  	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'Sales Associate'!");
+  	    	 return;
+  	     }
+  	     String education=this.cmbEdSA.getValue();
+  	     int seniority = this.cmbSenSA.getValue();
+  	     Professione p = new Professione("Sales Associate",seniority,education);
+  	     
+  	     for(int i=0;i<numSalesAssociate;i++) {
+  	    	 professioniRicercate.add(p);
+  	     }
+     }
+	else {
+		this.cmbEdSA.setValue(null);
+		this.cmbSenSA.setValue(null);
+	}
+   	
+   	if(this.sldSoftwareEngineer.getValue()!=0) {
+   		numSoftwareEngineer=(int)(this.sldSoftwareEngineer.getValue());
+   		if(this.cmbEdSE.getValue()==null || this.cmbSenSE.getValue()==null) {
+  	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'Software Engineer'!");
+  	    	 return;
+  	     }
+  	     String education=this.cmbEdSE.getValue();
+  	     int seniority = this.cmbSenSE.getValue();
+  	     Professione p = new Professione("Software Engineer",seniority,education);
+  	     
+  	     for(int i=0;i<numSoftwareEngineer;i++) {
+  	    	 professioniRicercate.add(p);
+  	     }
+     }
+   	else {
+   		this.cmbEdSE.setValue(null);
+   		this.cmbSenSE.setValue(null);
+   	}
+   	
+   	if(this.sldWarehouseAssociate.getValue()!=0) {
+   		numWarehouseAssociate=(int)(this.sldWarehouseAssociate.getValue());
+   		if(this.cmbEdWA.getValue()==null || this.cmbSenWA.getValue()==null) {
+  	    	 txtResult.appendText("Seleziona 'Education' e 'Seniority' per la posizione 'Warehouse Associate'!");
+  	    	 return;
+  	     }
+  	     String education=this.cmbEdWA.getValue();
+  	     int seniority = this.cmbSenWA.getValue();
+  	     Professione p = new Professione("Warehouse Associate",seniority,education);
+  	     
+  	     for(int i=0;i<numWarehouseAssociate;i++) {
+  	    	 professioniRicercate.add(p);
+  	     }
+     }
+   	else {
+   		this.cmbEdWA.setValue(null);
+   		this.cmbSenWA.setValue(null);
+   	}
+   	
     	
-    	if(this.sldSalesAssociate.getValue()!=0) {
-    		numSalesAssociate=(int)(this.sldSalesAssociate.getValue());
-    		 for(int i=0;i<numSalesAssociate;i++) {
-    	    	 professioniRicercate.add("Sales Associate");
-    	     }
-      	}
-    	
-    	if(this.sldSoftwareEngineer.getValue()!=0) {
-    		numSoftwareEngineer=(int)(this.sldSoftwareEngineer.getValue());
-    		 for(int i=0;i<numSoftwareEngineer;i++) {
-    	    	 professioniRicercate.add("Software Engineer");
-    	     }
-      	}
-    	if(this.sldWarehouseAssociate.getValue()!=0) {
-    		numWarehouseAssociate=(int)(this.sldWarehouseAssociate.getValue());
-    		 for(int i=0;i<numWarehouseAssociate;i++) {
-    	    	 professioniRicercate.add("Warehouse Associate");
-    	     }
-      	}
-    	
-    	List<Utente> utenti = model.cercaTeamWork(professioniRicercate, seniority, educationGrade);
+    	List<Utente> utenti = model.cercaTeamWork(professioniRicercate);
     	this.tableView1.setItems(FXCollections.observableArrayList(utenti));
     	if(utenti.size()==0) {
     		txtResult.setText("Non è stato possibile calcolare un team work con le specifiche richieste");
@@ -289,7 +444,7 @@ public class RicercaPersonaleController {
         pieChartRicorsione1.setLabelLineLength(10);
         pieChartRicorsione1.setLegendSide(Side.RIGHT);
     	
-    	List<Utente> utentiEqui = model.cercaTeamWorkEquo(professioniRicercate, seniority, educationGrade);
+    	List<Utente> utentiEqui = model.cercaTeamWorkEquo(professioniRicercate);
     	this.tableView2.setItems(FXCollections.observableArrayList(utentiEqui));
     	if(utentiEqui.size()==0) {
     		txtResult.setText("Non è stato possibile calcolare un team work con una rappresentanza di genere equa con le specifiche richieste");
@@ -359,13 +514,31 @@ public class RicercaPersonaleController {
     	double percDonne=100*((double)(numDonne)/(double)(utenti.size()));
     	return Math.round(percDonne*100.0)/100.0;
     }
-
+    
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-    	 assert btnAnalisiDati != null : "fx:id=\"btnAnalisiDati\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+    	assert btnAnalisiDati != null : "fx:id=\"btnAnalisiDati\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
     	assert btnCerca != null : "fx:id=\"btnCerca\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
-        assert cmbBoxEducation != null : "fx:id=\"cmbBoxEducation\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
-        assert cmbBoxSeniority != null : "fx:id=\"cmbBoxSeniority\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdDS != null : "fx:id=\"cmbEdDS\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdDriver != null : "fx:id=\"cmbEdDriver\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdFA != null : "fx:id=\"cmbEdFA\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdGD != null : "fx:id=\"cmbEdGD\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdIT != null : "fx:id=\"cmbEdIT\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdMA != null : "fx:id=\"cmbEdMA\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdManager != null : "fx:id=\"cmbEdManager\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdSA != null : "fx:id=\"cmbEdSA\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdSE != null : "fx:id=\"cmbEdSE\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbEdWA != null : "fx:id=\"cmbEdWA\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenDS != null : "fx:id=\"cmbSenDS\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenDriver != null : "fx:id=\"cmbSenDriver\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenFA != null : "fx:id=\"cmbSenFA\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenGD != null : "fx:id=\"cmbSenGD\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenIT != null : "fx:id=\"cmbSenIT\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenMA != null : "fx:id=\"cmbSenMA\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenManager != null : "fx:id=\"cmbSenManager\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenSA != null : "fx:id=\"cmbSenSA\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenSE != null : "fx:id=\"cmbSenSE\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+        assert cmbSenWA != null : "fx:id=\"cmbSenWA\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldDataScientist != null : "fx:id=\"sldDataScientist\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldDriver != null : "fx:id=\"sldDriver\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldFinancialAnalyst != null : "fx:id=\"sldFinancialAnalyst\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
@@ -417,16 +590,36 @@ public class RicercaPersonaleController {
         this.tableColumnSen2.setCellValueFactory(new PropertyValueFactory<Utente,Integer>("seniority"));
     }
     
-    public void setComboBox() {
-    	this.cmbBoxEducation.getItems().clear();
-    	this.cmbBoxEducation.getItems().addAll(this.model.getEducation());
-    	this.cmbBoxSeniority.getItems().clear();
-    	this.cmbBoxSeniority.getItems().addAll(this.model.getSeniority());
+    public void setComboBoxes() {
+    	List<Integer> seniority = this.model.getSeniority();
+    	List<String> education = this.model.getEducation();
+    	
+    	this.cmbSenDriver.getItems().addAll(seniority);
+    	this.cmbSenDS.getItems().addAll(seniority);
+    	this.cmbSenFA.getItems().addAll(seniority);
+    	this.cmbSenGD.getItems().addAll(seniority);
+    	this.cmbSenIT.getItems().addAll(seniority);
+    	this.cmbSenMA.getItems().addAll(seniority);
+    	this.cmbSenManager.getItems().addAll(seniority);
+    	this.cmbSenSA.getItems().addAll(seniority);
+    	this.cmbSenSE.getItems().addAll(seniority);
+    	this.cmbSenWA.getItems().addAll(seniority);
+    	
+    	this.cmbEdDS.getItems().addAll(education);
+    	this.cmbEdDriver.getItems().addAll(education);
+    	this.cmbEdFA.getItems().addAll(education);
+    	this.cmbEdGD.getItems().addAll(education);
+    	this.cmbEdIT.getItems().addAll(education);
+    	this.cmbEdMA.getItems().addAll(education);
+    	this.cmbEdManager.getItems().addAll(education);
+    	this.cmbEdSA.getItems().addAll(education);
+    	this.cmbEdSE.getItems().addAll(education);
+    	this.cmbEdWA.getItems().addAll(education);
     }
     
     public void setModel(Model model) {
     	this.model=model;
-    	this.setComboBox();
+    	this.setComboBoxes();
     }
 
 

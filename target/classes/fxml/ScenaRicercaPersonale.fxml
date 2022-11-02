@@ -44,32 +44,12 @@
                      <content>
                         <VBox alignment="CENTER">
                            <children>
-                              <HBox alignment="CENTER">
-                                 <children>
-                                    <Label text="Seniority">
-                                       <HBox.margin>
-                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                                       </HBox.margin>
-                                       <padding>
-                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                                       </padding>
-                                    </Label>
-                                    <ComboBox fx:id="cmbBoxSeniority" prefWidth="150.0" style="-fx-background-color: green;" />
-                                    <Label text="Education">
-                                       <HBox.margin>
-                                          <Insets bottom="4.0" left="20.0" right="4.0" top="4.0" />
-                                       </HBox.margin>
-                                       <padding>
-                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                                       </padding>
-                                    </Label>
-                                    <ComboBox fx:id="cmbBoxEducation" prefWidth="150.0" style="-fx-background-color: green;" />
-                                 </children>
-                              </HBox>
                               <GridPane alignment="CENTER">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 </columnConstraints>
                                 <rowConstraints>
                                     <RowConstraints vgrow="SOMETIMES" />
@@ -253,7 +233,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
                                        <font>
-                                          <Font name="System Bold" size="14.0" />
+                                          <Font name="System Bold Italic" size="14.0" />
                                        </font>
                                     </Label>
                                     <Label text="QUANTITÀ " textFill="#05772b" GridPane.columnIndex="1" GridPane.halignment="CENTER">
@@ -267,6 +247,36 @@
                                           <Font name="System Bold Italic" size="14.0" />
                                        </font>
                                     </Label>
+                                    <Label text="SENIORITY" textFill="#05772b" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="EDUCATION" textFill="#05772b" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                                       <font>
+                                          <Font name="System Bold Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="cmbSenDS" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cmbSenDriver" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cmbSenFA" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <ComboBox fx:id="cmbSenGD" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="cmbSenIT" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="cmbSenManager" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="cmbSenMA" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                    <ComboBox fx:id="cmbSenSA" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                                    <ComboBox fx:id="cmbSenSE" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                                    <ComboBox fx:id="cmbSenWA" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                                    <ComboBox fx:id="cmbEdDS" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cmbEdDriver" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cmbEdFA" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <ComboBox fx:id="cmbEdGD" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="cmbEdIT" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="cmbEdManager" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="cmbEdMA" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                    <ComboBox fx:id="cmbEdSA" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                                    <ComboBox fx:id="cmbEdSE" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                                    <ComboBox fx:id="cmbEdWA" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />

@@ -53,14 +53,14 @@ public class Model {
 	private double percMaleSen5;
 	private List<Utente> best;
 	List<Utente> utenti;
-	List<String> professioniRicercate;
+	List<Professione> professioniRicercate;
 	List<String> education;
 	List<Integer> seniority;
 	
 	public Model() {
 		this.gpgDAO = new GenderGapDAO();
 		this.utenti = new ArrayList<Utente>();
-		this.professioniRicercate = new ArrayList<String>();
+		this.professioniRicercate = new ArrayList<Professione>();
 		this.education = this.gpgDAO.getEducations();
 		this.seniority = this.gpgDAO.getSeniorities();
 	}
@@ -110,18 +110,18 @@ public class Model {
 		this.percMaleSen5 = (double)(this.gpgDAO.getNumSeniority(jobTitle,"Male",5))/(double)(this.maleNumber)*100;
 	}
 	
-	public List<Utente> cercaTeamWork(List<String> professioniRicercate, int seniority, int educationGrade) {
+	public List<Utente> cercaTeamWork(List<Professione> professioniRicercate) {
 		
 		this.utenti = this.gpgDAO.getAll();
 		this.best=new ArrayList<Utente>();
 		List<Utente> parziale = new ArrayList<Utente>();
 		this.professioniRicercate = professioniRicercate;
-		List<String> professioniRicercateModificabile = new ArrayList<String>(professioniRicercate);
+		List<Professione> professioniRicercateModificabile = new ArrayList<Professione>(professioniRicercate);
 		Iterator<Utente> itr = utenti.iterator();
 		
 		while(itr.hasNext()) {
 			Utente u = itr.next();
-			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority || u.getEducationGrade()<educationGrade) {
+			if(!professioniRicercate.contains(new Professione(u.getJobTitle(),u.getSeniority(),u.getEducation()))) {
 				itr.remove();
 			}
 		}
@@ -136,8 +136,7 @@ public class Model {
 		return best;
 	}
 	
-	private void ricorsione(List<Utente> parziale, List<String> professioniRicercateModificabile, int livello){
-		
+	private void ricorsione(List<Utente> parziale, List<Professione> professioniRicercateModificabile, int livello){
 		
 		// condizione di terminazione
 		if(professioniRicercateModificabile.size()==0) {
@@ -161,32 +160,29 @@ public class Model {
 			
 		} 
 		
-		
-		if(professioniRicercateModificabile.contains(utenti.get(livello).getJobTitle()) && !parziale.contains(utenti.get(livello))) {
+		if(professioniRicercateModificabile.contains(new Professione(utenti.get(livello).getJobTitle(),utenti.get(livello).getSeniority(),utenti.get(livello).getEducation())) && !parziale.contains(utenti.get(livello))) {
 			//provo ad aggiungere
 			parziale.add(utenti.get(livello));
-			professioniRicercateModificabile.remove(utenti.get(livello).getJobTitle());
+			professioniRicercateModificabile.remove(new Professione(utenti.get(livello).getJobTitle(),utenti.get(livello).getSeniority(),utenti.get(livello).getEducation()));
 			ricorsione(parziale,professioniRicercateModificabile, livello+1);
 			
 			// provo a non aggiungere
-			professioniRicercateModificabile.add(parziale.get(parziale.size()-1).getJobTitle());
+			professioniRicercateModificabile.add(new Professione(parziale.get(parziale.size()-1).getJobTitle(),parziale.get(parziale.size()-1).getSeniority(), parziale.get(parziale.size()-1).getEducation()));
 			parziale.remove(parziale.size()-1);
 			ricorsione(parziale,professioniRicercateModificabile,livello+1);
 		}
 		
 		ricorsione(parziale,professioniRicercateModificabile,livello+1);
-		
-	
 	}
 	
 	
-	public List<Utente> cercaTeamWorkEquo(List<String> professioniRicercate, int seniority, int educationGrade) {
+	public List<Utente> cercaTeamWorkEquo(List<Professione> professioniRicercate) {
 		
 		this.utenti = this.gpgDAO.getAll();
 		this.best=new ArrayList<Utente>();
 		List<Utente> parziale = new ArrayList<Utente>();
 		this.professioniRicercate = professioniRicercate;
-		List<String> professioniRicercateModificabile = new ArrayList<String>();
+		List<Professione> professioniRicercateModificabile = new ArrayList<Professione>();
 		professioniRicercateModificabile.addAll(professioniRicercate);
 		utenti.clear();
 		utenti = this.gpgDAO.getAll();
@@ -194,7 +190,7 @@ public class Model {
 		
 		while(itr.hasNext()) {
 			Utente u = itr.next();
-			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority || u.getEducationGrade()<educationGrade) {
+			if(!professioniRicercate.contains(new Professione(u.getJobTitle(),u.getSeniority(),u.getEducation()))) {
 				itr.remove();
 			}
 		}
@@ -209,8 +205,7 @@ public class Model {
 		return best;
 	}
 	
-	private void ricorsioneEqua(List<Utente> parziale, List<String> professioniRicercateModificabile, int livello){
-		
+	private void ricorsioneEqua(List<Utente> parziale, List<Professione> professioniRicercateModificabile, int livello){
 		
 		// condizione di terminazione
 		if(professioniRicercateModificabile.size()==0) {
@@ -235,21 +230,19 @@ public class Model {
 			return;
 		} 
 		
-		
-		if(professioniRicercateModificabile.contains(utenti.get(livello).getJobTitle()) && !parziale.contains(utenti.get(livello))) {
+		if(professioniRicercateModificabile.contains(new Professione(utenti.get(livello).getJobTitle(),utenti.get(livello).getSeniority(),utenti.get(livello).getEducation())) && !parziale.contains(utenti.get(livello))) {
 			//provo ad aggiungere
 			parziale.add(utenti.get(livello));
-			professioniRicercateModificabile.remove(utenti.get(livello).getJobTitle());
+			professioniRicercateModificabile.remove(new Professione(utenti.get(livello).getJobTitle(),utenti.get(livello).getSeniority(),utenti.get(livello).getEducation()));
 			ricorsioneEqua(parziale,professioniRicercateModificabile, livello+1);
 			
 			// provo a non aggiungere
-			professioniRicercateModificabile.add(parziale.get(parziale.size()-1).getJobTitle());
+			professioniRicercateModificabile.add(new Professione(parziale.get(parziale.size()-1).getJobTitle(),parziale.get(parziale.size()-1).getSeniority(), parziale.get(parziale.size()-1).getEducation()));
 			parziale.remove(parziale.size()-1);
 			ricorsioneEqua(parziale,professioniRicercateModificabile,livello+1);
 		}
 		
 		ricorsioneEqua(parziale,professioniRicercateModificabile,livello+1);
-		
 	
 	}
 	
