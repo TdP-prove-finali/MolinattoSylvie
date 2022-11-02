@@ -28,7 +28,7 @@ public class GenderGapDAO {
 				else if(res.getString("Education").equals("High School")) {
 					educationGrade=2;
 				}
-				else if(res.getString("Education").equals("Master")){
+				else if(res.getString("Education").equals("Masters")){
 					educationGrade=3;
 				}
 				else if(res.getString("Education").equals("PhD")) {

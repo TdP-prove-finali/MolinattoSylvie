@@ -121,7 +121,7 @@ public class AnalisiDatiController {
     	
     	
     	if(jobTitle=="" || jobTitle==null) {
-    		System.out.println("Seleziona un lavoro!\n");
+    		txtInfo.appendText("Seleziona un lavoro!\n");
     	}
     	else {
     		this.model.Analizza(jobTitle);

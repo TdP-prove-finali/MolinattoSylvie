@@ -4,6 +4,7 @@
 
 package it.polito.tdp.Tesi;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Side;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -25,6 +28,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class RicercaPersonaleController {
 	
@@ -35,6 +40,9 @@ public class RicercaPersonaleController {
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+    
+    @FXML // fx:id="btnAnalisiDati"
+    private Button btnAnalisiDati; // Value injected by FXMLLoader
 
     @FXML // fx:id="btnCerca"
     private Button btnCerca; // Value injected by FXMLLoader
@@ -188,7 +196,7 @@ public class RicercaPersonaleController {
 		else if(education.equals("High School")) {
 			educationGrade=2;
 		}
-		else if(education.equals("Master")){
+		else if(education.equals("Masters")){
 			educationGrade=3;
 		}
 		else if(education.equals("PhD")) {
@@ -262,7 +270,11 @@ public class RicercaPersonaleController {
     	
     	List<Utente> utenti = model.cercaTeamWork(professioniRicercate, seniority, educationGrade);
     	this.tableView1.setItems(FXCollections.observableArrayList(utenti));
-    	
+    	if(utenti.size()==0) {
+    		txtResult.setText("Non è stato possibile calcolare un team work con le specifiche richieste");
+    		txtResult.setStyle("-fx-text-fill: red;");
+    		return;
+    	}
     	double percDonne1=this.calcolaPercentuali(utenti);
     	double percUomini1=100-percDonne1;
     	ObservableList list1 = FXCollections.observableArrayList(
@@ -282,6 +294,7 @@ public class RicercaPersonaleController {
     	if(utentiEqui.size()==0) {
     		txtResult.setText("Non è stato possibile calcolare un team work con una rappresentanza di genere equa con le specifiche richieste");
     		txtResult.setStyle("-fx-text-fill: red;");
+    		return;
     	}
     	double percDonne2=this.calcolaPercentuali(utentiEqui);
     	double percUomini2=100-percDonne2;
@@ -301,6 +314,26 @@ public class RicercaPersonaleController {
     	txtField2.appendText("Performance Evaluation Score medio : "+this.calcolaAvgPerfEval(utentiEqui));
     	
 
+    }
+    
+    @FXML
+    void analisiDati(ActionEvent event) {
+    	Stage stage = null;
+        BorderPane root = null;
+        stage = (Stage) btnAnalisiDati.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ScenaAnalisiDati.fxml"));
+        try {
+			root = loader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        AnalisiDatiController controller=loader.getController();
+        Model model=new Model(); 
+        controller.setModel(model);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     
     public double calcolaAvgPerfEval(List<Utente> utenti) {
@@ -329,7 +362,8 @@ public class RicercaPersonaleController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert btnCerca != null : "fx:id=\"btnCerca\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+    	 assert btnAnalisiDati != null : "fx:id=\"btnAnalisiDati\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+    	assert btnCerca != null : "fx:id=\"btnCerca\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert cmbBoxEducation != null : "fx:id=\"cmbBoxEducation\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert cmbBoxSeniority != null : "fx:id=\"cmbBoxSeniority\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert sldDataScientist != null : "fx:id=\"sldDataScientist\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";

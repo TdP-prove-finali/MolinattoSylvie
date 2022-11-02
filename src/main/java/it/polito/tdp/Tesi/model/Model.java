@@ -59,7 +59,7 @@ public class Model {
 	
 	public Model() {
 		this.gpgDAO = new GenderGapDAO();
-		this.utenti = this.gpgDAO.getAll();
+		this.utenti = new ArrayList<Utente>();
 		this.professioniRicercate = new ArrayList<String>();
 		this.education = this.gpgDAO.getEducations();
 		this.seniority = this.gpgDAO.getSeniorities();
@@ -112,6 +112,7 @@ public class Model {
 	
 	public List<Utente> cercaTeamWork(List<String> professioniRicercate, int seniority, int educationGrade) {
 		
+		this.utenti = this.gpgDAO.getAll();
 		this.best=new ArrayList<Utente>();
 		List<Utente> parziale = new ArrayList<Utente>();
 		this.professioniRicercate = professioniRicercate;
@@ -120,7 +121,7 @@ public class Model {
 		
 		while(itr.hasNext()) {
 			Utente u = itr.next();
-			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority || u.getEducationGrade()!=educationGrade) {
+			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority || u.getEducationGrade()<educationGrade) {
 				itr.remove();
 			}
 		}
@@ -181,6 +182,7 @@ public class Model {
 	
 	public List<Utente> cercaTeamWorkEquo(List<String> professioniRicercate, int seniority, int educationGrade) {
 		
+		this.utenti = this.gpgDAO.getAll();
 		this.best=new ArrayList<Utente>();
 		List<Utente> parziale = new ArrayList<Utente>();
 		this.professioniRicercate = professioniRicercate;
@@ -192,7 +194,7 @@ public class Model {
 		
 		while(itr.hasNext()) {
 			Utente u = itr.next();
-			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority || u.getEducationGrade()!=educationGrade) {
+			if(!professioniRicercate.contains(u.getJobTitle()) || u.getSeniority()<seniority || u.getEducationGrade()<educationGrade) {
 				itr.remove();
 			}
 		}
@@ -229,7 +231,7 @@ public class Model {
 			return;
 		}
 		
-		if(calcolaTotScore(parziale)==(this.professioniRicercate.size())*5 && soluzioneEqua(parziale)) {
+		if(calcolaTotScore(best)==(this.professioniRicercate.size()*5) /*&& soluzioneEqua(parziale)*/) {
 			return;
 		} 
 		
@@ -263,7 +265,7 @@ public class Model {
 		
 		if(numDonne==parziale.size()/2) {
 				return true;
-			}
+		}
 		else {
 				return false;
 			}
