@@ -343,7 +343,7 @@ public class RicercaPersonaleController {
      }
    	else {
    		this.cmbEdManager.setValue(null);
-   		this.cmbSenMA.setValue(null);
+   		this.cmbSenManager.setValue(null);
    	}
    	
    	if(this.sldMarketingAssociate.getValue()!=0) {

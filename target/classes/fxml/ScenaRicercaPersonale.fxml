@@ -65,7 +65,7 @@
                                     <RowConstraints vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="DATA SCIENTIST" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-border-color: green;" text="DATA SCIENTIST" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -81,7 +81,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
                                     </Slider>
-                                    <Label contentDisplay="CENTER" text="DRIVER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                    <Label contentDisplay="CENTER" style="-fx-border-color: green;" text="DRIVER" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -97,7 +97,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
                                     </Slider>
-                                    <Label text="FINANCIAL ANALYST" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                                    <Label style="-fx-border-color: green;" text="FINANCIAL ANALYST" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -113,7 +113,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
                                     </Slider>
-                                    <Label text="GRAPHIC DESIGNER" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                                    <Label style="-fx-border-color: green;" text="GRAPHIC DESIGNER" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -129,7 +129,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
                                     </Slider>
-                                    <Label text="IT" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                                    <Label style="-fx-border-color: green;" text="IT" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -145,7 +145,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
                                     </Slider>
-                                    <Label text="MANAGER" GridPane.halignment="CENTER" GridPane.rowIndex="6">
+                                    <Label style="-fx-border-color: green;" text="MANAGER" GridPane.halignment="CENTER" GridPane.rowIndex="6">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -161,7 +161,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
                                     </Slider>
-                                    <Label text="MARKETING ASSOCIATE" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                                    <Label style="-fx-border-color: green;" text="MARKETING ASSOCIATE" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -177,7 +177,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
                                     </Slider>
-                                    <Label text="SALES ASSOCIATE" GridPane.halignment="CENTER" GridPane.rowIndex="8">
+                                    <Label style="-fx-border-color: green;" text="SALES ASSOCIATE" GridPane.halignment="CENTER" GridPane.rowIndex="8">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -193,7 +193,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
                                     </Slider>
-                                    <Label alignment="TOP_LEFT" text="SOFTWARE ENGINEER" GridPane.halignment="CENTER" GridPane.rowIndex="9">
+                                    <Label alignment="TOP_LEFT" style="-fx-border-color: green;" text="SOFTWARE ENGINEER" GridPane.halignment="CENTER" GridPane.rowIndex="9">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -209,7 +209,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
                                     </Slider>
-                                    <Label text="WAREHOUSE ASSOCIATE" GridPane.halignment="CENTER" GridPane.rowIndex="10">
+                                    <Label style="-fx-border-color: green;" text="WAREHOUSE ASSOCIATE" GridPane.halignment="CENTER" GridPane.rowIndex="10">
                                        <GridPane.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </GridPane.margin>
@@ -257,26 +257,26 @@
                                           <Font name="System Bold Italic" size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="cmbSenDS" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <ComboBox fx:id="cmbSenDriver" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                    <ComboBox fx:id="cmbSenFA" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                    <ComboBox fx:id="cmbSenGD" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                                    <ComboBox fx:id="cmbSenIT" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                                    <ComboBox fx:id="cmbSenManager" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                                    <ComboBox fx:id="cmbSenMA" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                                    <ComboBox fx:id="cmbSenSA" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                                    <ComboBox fx:id="cmbSenSE" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-                                    <ComboBox fx:id="cmbSenWA" prefWidth="150.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                                    <ComboBox fx:id="cmbEdDS" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <ComboBox fx:id="cmbEdDriver" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                    <ComboBox fx:id="cmbEdFA" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                    <ComboBox fx:id="cmbEdGD" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                                    <ComboBox fx:id="cmbEdIT" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                                    <ComboBox fx:id="cmbEdManager" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                                    <ComboBox fx:id="cmbEdMA" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                                    <ComboBox fx:id="cmbEdSA" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                                    <ComboBox fx:id="cmbEdSE" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-                                    <ComboBox fx:id="cmbEdWA" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                                    <ComboBox fx:id="cmbSenDS" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cmbSenDriver" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cmbSenFA" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <ComboBox fx:id="cmbSenGD" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="cmbSenIT" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="cmbSenManager" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="cmbSenMA" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                    <ComboBox fx:id="cmbSenSA" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                                    <ComboBox fx:id="cmbSenSE" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                                    <ComboBox fx:id="cmbSenWA" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                                    <ComboBox fx:id="cmbEdDS" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cmbEdDriver" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cmbEdFA" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <ComboBox fx:id="cmbEdGD" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="cmbEdIT" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                    <ComboBox fx:id="cmbEdManager" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                                    <ComboBox fx:id="cmbEdMA" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                    <ComboBox fx:id="cmbEdSA" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                                    <ComboBox fx:id="cmbEdSE" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                                    <ComboBox fx:id="cmbEdWA" prefWidth="150.0" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
                                  </children>
                                  <VBox.margin>
                                     <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
