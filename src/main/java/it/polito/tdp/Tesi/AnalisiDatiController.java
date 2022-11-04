@@ -28,6 +28,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -112,10 +113,10 @@ public class AnalisiDatiController {
     private NumberAxis yAxisBonus; // Value injected by FXMLLoader
 
     
-    
     @FXML
     void Analizza(ActionEvent event) {
     	
+    	boolean updateReceived=true;
     	txtResult.clear();
     	String jobTitle = this.cmbJobTitle.getValue();
     	
@@ -141,7 +142,22 @@ public class AnalisiDatiController {
     	    
     	     // bar chart retribuzione annua media
     	     
-    	     barChart1.getData().clear();  
+    	     ObservableList<Series<String, Double>> allSeries1 = barChart1.getData();
+       	     
+ 			 if (updateReceived) {
+       	        for (XYChart.Series<String, Double> series : allSeries1) {
+       	            for (XYChart.Data<String, Double> data : series.getData()) {
+       	                Node node = data.getNode();
+       	                Parent parent = node.parentProperty().get();
+       	                if (parent != null && parent instanceof Group) {
+       	                    Group group = (Group) parent;
+       	                    group.getChildren().clear();
+       	                }
+       	            }
+       	        }
+       	        allSeries1.clear();
+       	     }
+    	     // barChart1.getData().clear();  
     	     
     	     final String pagaAnnuaMedia = "Paga annua media";
     	    
@@ -180,7 +196,22 @@ public class AnalisiDatiController {
     	     
     	     // bar chart bonus annuo medio
     	     
-    	     barChartBonus.getData().clear();
+    	     ObservableList<Series<String, Double>> allSeriesBonus = barChartBonus.getData();
+       	     
+ 			 if (updateReceived) {
+       	        for (XYChart.Series<String, Double> series : allSeriesBonus) {
+       	            for (XYChart.Data<String, Double> data : series.getData()) {
+       	                Node node = data.getNode();
+       	                Parent parent = node.parentProperty().get();
+       	                if (parent != null && parent instanceof Group) {
+       	                    Group group = (Group) parent;
+       	                    group.getChildren().clear();
+       	                }
+       	            }
+       	        }
+       	        allSeriesBonus.clear();
+       	     }
+    	     //barChartBonus.getData().clear();
     	     
     	     final String bonusAnnuoMedio = "Bonus Annuo Medio";
     	     
@@ -218,6 +249,22 @@ public class AnalisiDatiController {
     	     
     	     
     	     // bar chart età media
+    	     
+    	     ObservableList<Series<String, Double>> allSeries2 = barChart2.getData();
+       	     
+ 			 if (updateReceived) {
+       	        for (XYChart.Series<String, Double> series : allSeries2) {
+       	            for (XYChart.Data<String, Double> data : series.getData()) {
+       	                Node node = data.getNode();
+       	                Parent parent = node.parentProperty().get();
+       	                if (parent != null && parent instanceof Group) {
+       	                    Group group = (Group) parent;
+       	                    group.getChildren().clear();
+       	                }
+       	            }
+       	        }
+       	        allSeries2.clear();
+       	     }
     	     
     	     barChart2.getData().clear();
     	     XYChart.Series<String, Double> series3 = new XYChart.Series<>(); 
@@ -393,17 +440,6 @@ public class AnalisiDatiController {
       	     pieChart7.setLegendSide(Side.RIGHT);
     	     
     	     
-    	     
-          /*txtResult.appendText("Percentuale femminile  : "+this.model.getPercentualeFemminile()+" %\n");
-    		txtResult.appendText("Percentuale maschile  : "+this.model.getPercentualeMaschile()+" %\n");
-    		txtResult.appendText("Stipendio medio femminile : "+this.model.getAvgFemalePay()+" $/anno\n");
-    		txtResult.appendText("Stipendio medio maschile : "+this.model.getAvgMalePay()+" $/anno\n");
-    		txtResult.appendText("Bonus medio femminile : "+this.model.getAvgFemaleBonus()+" $/anno\n");
-    		txtResult.appendText("Bonus medio maschile : "+this.model.getAvgMaleBonus()+" $/anno\n");
-    		txtResult.appendText("Età media del genere femminile : "+this.model.getAvgFemaleAge()+" anni\n");
-    		txtResult.appendText("Età media del genere maschile : "+this.model.getAvgMaleAge()+" anni\n");
-    		txtResult.appendText("Numero medio di anni di lavoro del genere femminile : "+this.model.getAvgFemaleSeniority()+" anni\n");
-    		txtResult.appendText("Numero medio di anni di lavoro del genere maschile : "+this.model.getAvgMaleSeniority()+" anni\n"); */
     	}
     }
     
@@ -429,8 +465,10 @@ public class AnalisiDatiController {
   	  final Text dataText = new Text(data.getYValue() + "");
   	  node.parentProperty().addListener(new ChangeListener<Parent>() {
   	    @Override public void changed(ObservableValue<? extends Parent> ov, Parent oldParent, Parent parent) {
-  	      Group parentGroup = (Group) parent;
-  	      parentGroup.getChildren().add(dataText);
+  	    	  Group parentGroup = (Group) parent;
+  	    	  if(parentGroup!=null && parentGroup.getChildren()!=null) {
+  	  	    	parentGroup.getChildren().add(dataText);
+  	  	      }
   	    }
   	  });
 
