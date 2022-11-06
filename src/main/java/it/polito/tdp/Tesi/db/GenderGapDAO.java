@@ -15,12 +15,12 @@ public class GenderGapDAO {
 		String sql = "SELECT * FROM gender_gap ";
 		List<Utente> result = new ArrayList<Utente>();
 		Connection conn = DBConnect.getConnection();
-
+		
 		try {
 			PreparedStatement st = conn.prepareStatement(sql);
 			ResultSet res = st.executeQuery();
 			while (res.next()) {
-
+				
 				int educationGrade=0;
 				if(res.getString("Education").equals("College")) {
 					educationGrade=1;

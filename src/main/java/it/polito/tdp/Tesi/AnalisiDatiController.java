@@ -125,6 +125,9 @@ public class AnalisiDatiController {
     		txtInfo.appendText("Seleziona un lavoro!\n");
     	}
     	else {
+    		
+    		// creazione pie chart rappresentanza di genere 
+    		
     		this.model.Analizza(jobTitle);
     		 ObservableList list1 = FXCollections.observableArrayList(
     	                new PieChart.Data("Percentuale uomini = "+this.model.getPercentualeMaschile()+" %", this.model.getPercentualeMaschile()),
@@ -140,7 +143,7 @@ public class AnalisiDatiController {
     	     
     	     
     	    
-    	     // bar chart retribuzione annua media
+    	     // creazione bar chart retribuzione annua media
     	     
     	     ObservableList<Series<String, Double>> allSeries1 = barChart1.getData();
        	     
@@ -157,7 +160,7 @@ public class AnalisiDatiController {
        	        }
        	        allSeries1.clear();
        	     }
-    	     // barChart1.getData().clear();  
+    	     
     	     
     	     final String pagaAnnuaMedia = "Paga annua media";
     	    
@@ -194,7 +197,7 @@ public class AnalisiDatiController {
     	     barChart1.setVisible(true);
     	  
     	     
-    	     // bar chart bonus annuo medio
+    	     // creazione bar chart bonus annuo medio
     	     
     	     ObservableList<Series<String, Double>> allSeriesBonus = barChartBonus.getData();
        	     
@@ -211,7 +214,7 @@ public class AnalisiDatiController {
        	        }
        	        allSeriesBonus.clear();
        	     }
-    	     //barChartBonus.getData().clear();
+    	     
     	     
     	     final String bonusAnnuoMedio = "Bonus Annuo Medio";
     	     
@@ -248,7 +251,7 @@ public class AnalisiDatiController {
     	     barChartBonus.setVisible(true);
     	     
     	     
-    	     // bar chart età media
+    	     // creazione bar chart età media
     	     
     	     ObservableList<Series<String, Double>> allSeries2 = barChart2.getData();
        	     
@@ -299,7 +302,7 @@ public class AnalisiDatiController {
     	     barChart2.setVisible(true);
     	     
     	     
-    	     // pie chart  istruzione
+    	     // creazione pie chart  istruzione
     	     
     	     double percFemaleCollege = this.model.getPercFemaleCollege();
     	     double percFemaleHighSchool = this.model.getPercFemaleHighSchool();
@@ -345,7 +348,7 @@ public class AnalisiDatiController {
      	     
      	     
      	     
-     	    // pie chart Performance Evaluation Score
+     	    // creazione pie chart Performance Evaluation Score
      	    double percFemale1 = this.model.getPercFemale1();
      	    double percFemale2 = this.model.getPercFemale2();
      	    double percFemale3 = this.model.getPercFemale3();
@@ -392,7 +395,7 @@ public class AnalisiDatiController {
      	     pieChart5.setLegendSide(Side.RIGHT);
     	     
     	     
-     	    // pie chart Seniority
+     	    // creazione pie chart Seniority
      	     
       	    double percFemaleSen1 = this.model.getPercFemaleSen1();
       	    double percFemaleSen2 = this.model.getPercFemaleSen2();

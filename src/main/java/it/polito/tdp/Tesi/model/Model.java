@@ -126,13 +126,15 @@ public class Model {
 			}
 		}
 		
-		Collections.sort(utenti);
 		System.out.println("Numero utenti : "+this.utenti.size()+"\n");
+		
 		ricorsione(parziale, professioniRicercateModificabile,0);
+		
 		System.out.println("Ricorsione terminata!\n");
 		for(Utente u : this.best) {
 			System.out.println(u+"\n");
 		}
+		
 		return best;
 	}
 	
@@ -160,14 +162,20 @@ public class Model {
 			
 		} 
 		
-		if(professioniRicercateModificabile.contains(new Professione(utenti.get(livello).getJobTitle(),utenti.get(livello).getSeniority(),utenti.get(livello).getEducation())) && !parziale.contains(utenti.get(livello))) {
+		if(professioniRicercateModificabile.contains(new Professione(utenti.get(livello).getJobTitle(),
+		                                                             utenti.get(livello).getSeniority(),
+		                                                             utenti.get(livello).getEducation()))) {
 			//provo ad aggiungere
 			parziale.add(utenti.get(livello));
-			professioniRicercateModificabile.remove(new Professione(utenti.get(livello).getJobTitle(),utenti.get(livello).getSeniority(),utenti.get(livello).getEducation()));
+			professioniRicercateModificabile.remove(new Professione(utenti.get(livello).getJobTitle(),
+					                                                utenti.get(livello).getSeniority(),
+					                                                utenti.get(livello).getEducation()));
 			ricorsione(parziale,professioniRicercateModificabile, livello+1);
 			
 			// provo a non aggiungere
-			professioniRicercateModificabile.add(new Professione(parziale.get(parziale.size()-1).getJobTitle(),parziale.get(parziale.size()-1).getSeniority(), parziale.get(parziale.size()-1).getEducation()));
+			professioniRicercateModificabile.add(new Professione(parziale.get(parziale.size()-1).getJobTitle(),
+					                                             parziale.get(parziale.size()-1).getSeniority(), 
+					                                             parziale.get(parziale.size()-1).getEducation()));
 			parziale.remove(parziale.size()-1);
 			ricorsione(parziale,professioniRicercateModificabile,livello+1);
 		}
@@ -195,7 +203,6 @@ public class Model {
 			}
 		}
 		
-		//Collections.sort(utenti);
 		System.out.println("Numero utenti : "+this.utenti.size()+"\n");
 		ricorsioneEqua(parziale, professioniRicercateModificabile,0);
 		System.out.println("Ricorsione terminata!\n");
@@ -226,18 +233,24 @@ public class Model {
 			return;
 		}
 		
-		if(calcolaTotScore(best)==(this.professioniRicercate.size()*5) /*&& soluzioneEqua(parziale)*/) {
+		if(calcolaTotScore(best)==(this.professioniRicercate.size()*5)) {
 			return;
 		} 
 		
-		if(professioniRicercateModificabile.contains(new Professione(utenti.get(livello).getJobTitle(),utenti.get(livello).getSeniority(),utenti.get(livello).getEducation())) && !parziale.contains(utenti.get(livello))) {
+		if(professioniRicercateModificabile.contains(new Professione(utenti.get(livello).getJobTitle(),
+				                                                     utenti.get(livello).getSeniority(),
+				                                                     utenti.get(livello).getEducation()))) {
 			//provo ad aggiungere
 			parziale.add(utenti.get(livello));
-			professioniRicercateModificabile.remove(new Professione(utenti.get(livello).getJobTitle(),utenti.get(livello).getSeniority(),utenti.get(livello).getEducation()));
+			professioniRicercateModificabile.remove(new Professione(utenti.get(livello).getJobTitle(),
+					                                                utenti.get(livello).getSeniority(),
+					                                                utenti.get(livello).getEducation()));
 			ricorsioneEqua(parziale,professioniRicercateModificabile, livello+1);
 			
 			// provo a non aggiungere
-			professioniRicercateModificabile.add(new Professione(parziale.get(parziale.size()-1).getJobTitle(),parziale.get(parziale.size()-1).getSeniority(), parziale.get(parziale.size()-1).getEducation()));
+			professioniRicercateModificabile.add(new Professione(parziale.get(parziale.size()-1).getJobTitle(),
+					                                             parziale.get(parziale.size()-1).getSeniority(), 
+					                                             parziale.get(parziale.size()-1).getEducation()));
 			parziale.remove(parziale.size()-1);
 			ricorsioneEqua(parziale,professioniRicercateModificabile,livello+1);
 		}

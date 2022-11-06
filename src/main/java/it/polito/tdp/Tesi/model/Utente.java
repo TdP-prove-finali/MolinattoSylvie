@@ -18,8 +18,8 @@ public class Utente implements Comparable<Utente>{
 	int bonus;
 	
 	
-	public Utente(int id, String jobTitle, String gender, int age, int perfEval, String education, int educationGrade, String dept,
-			int seniority, int basePay, int bonus) {
+	public Utente(int id, String jobTitle, String gender, int age, int perfEval, String education, 
+			      int educationGrade, String dept, int seniority, int basePay, int bonus) {
 		super();
 		this.id = id;
 		this.jobTitle = jobTitle;

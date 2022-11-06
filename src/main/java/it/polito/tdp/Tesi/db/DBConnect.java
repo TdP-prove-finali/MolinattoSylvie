@@ -35,7 +35,6 @@ public class DBConnect {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
-
 }
+
