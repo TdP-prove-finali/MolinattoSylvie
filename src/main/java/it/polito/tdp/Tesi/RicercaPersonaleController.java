@@ -432,7 +432,7 @@ public class RicercaPersonaleController {
     	}
     	double percDonne1=this.calcolaPercentuali(utenti);
     	double percUomini1=100-percDonne1;
-    	ObservableList list1 = FXCollections.observableArrayList(
+    	ObservableList<PieChart.Data> list1 = FXCollections.observableArrayList(
                 new PieChart.Data("Percentuale uomini = "+percUomini1+" %", percUomini1),
                 new PieChart.Data("Percentuale donne = "+percDonne1+" %", percDonne1));
         pieChartRicorsione1.setData(list1);
@@ -453,7 +453,7 @@ public class RicercaPersonaleController {
     	}
     	double percDonne2=this.calcolaPercentuali(utentiEqui);
     	double percUomini2=100-percDonne2;
-    	ObservableList list2 = FXCollections.observableArrayList(
+    	ObservableList<PieChart.Data> list2 = FXCollections.observableArrayList(
                 new PieChart.Data("Percentuale uomini = "+percUomini2+" %", percUomini2),
                 new PieChart.Data("Percentuale donne = "+percDonne2+" %", percDonne2));
         pieChartRicorsione2.setData(list2);

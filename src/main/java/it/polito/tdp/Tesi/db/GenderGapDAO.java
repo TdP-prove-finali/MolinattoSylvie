@@ -21,22 +21,10 @@ public class GenderGapDAO {
 			ResultSet res = st.executeQuery();
 			while (res.next()) {
 				
-				int educationGrade=0;
-				if(res.getString("Education").equals("College")) {
-					educationGrade=1;
-				}
-				else if(res.getString("Education").equals("High School")) {
-					educationGrade=2;
-				}
-				else if(res.getString("Education").equals("Masters")){
-					educationGrade=3;
-				}
-				else if(res.getString("Education").equals("PhD")) {
-					educationGrade=4;
-				}
+				
 				Utente gpg = new Utente(res.getInt("Id"),res.getString("JobTitle"),
 						           res.getString("Gender"),res.getInt("Age"),res.getInt("PerfEval"),
-						           res.getString("Education"), educationGrade,res.getString("Dept"),
+						           res.getString("Education"),res.getString("Dept"),
 						           res.getInt("Seniority"),res.getInt("BasePay"),res.getInt("Bonus"));
 				result.add(gpg);
 			}

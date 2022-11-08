@@ -6,6 +6,7 @@ package it.polito.tdp.Tesi;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.Tesi.model.Model;
@@ -18,7 +19,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -31,11 +31,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -129,7 +126,7 @@ public class AnalisiDatiController {
     		// creazione pie chart rappresentanza di genere 
     		
     		this.model.Analizza(jobTitle);
-    		 ObservableList list1 = FXCollections.observableArrayList(
+    		 ObservableList<PieChart.Data> list1 = FXCollections.observableArrayList(
     	                new PieChart.Data("Percentuale uomini = "+this.model.getPercentualeMaschile()+" %", this.model.getPercentualeMaschile()),
     	                new PieChart.Data("Percentuale donne = "+this.model.getPercentualeFemminile()+" %", this.model.getPercentualeFemminile()));
     	     pieChart1.setData(list1);
@@ -189,7 +186,7 @@ public class AnalisiDatiController {
     	       });
     	     series2.getData().add(data2);
     	     
-    	     barChart1.getData().addAll(series1,series2); 
+    	     barChart1.getData().addAll(Arrays.asList(series1,series2)); 
     	     barChart1.setBarGap(2);
     	     barChart1.setCategoryGap(10);
     	     barChart1.setLegendVisible(true);
@@ -243,7 +240,7 @@ public class AnalisiDatiController {
     	     seriesBonusDonne.getData().add(dataBonusDonne);
     	     
     	     
-    	     barChartBonus.getData().addAll(seriesBonusUomini,seriesBonusDonne); 
+    	     barChartBonus.getData().addAll(Arrays.asList(seriesBonusUomini,seriesBonusDonne)); 
     	     barChartBonus.setBarGap(2);
     	     barChartBonus.setCategoryGap(10);
     	     barChartBonus.setLegendVisible(true);
@@ -294,7 +291,7 @@ public class AnalisiDatiController {
     	       });
     	     series4.getData().add(data4);
     	     
-    	     barChart2.getData().addAll(series3,series4);
+    	     barChart2.getData().addAll(Arrays.asList(series3,series4));
     	     barChart2.setBarGap(2);
     	     barChart2.setCategoryGap(10);
     	     barChart2.setLegendVisible(true);
@@ -315,7 +312,7 @@ public class AnalisiDatiController {
     	     double percMaleMasters =this.model.getPercMaleMasters();
     	     double percMalePhD = this.model.getPercMalePhD();
     	     
-    	     ObservableList list2 = FXCollections.observableArrayList(
+    	     ObservableList<PieChart.Data> list2 = FXCollections.observableArrayList(
  	                new PieChart.Data("College = "+percFemaleCollege+" %", percFemaleCollege),
  	                new PieChart.Data("High School = "+percFemaleHighSchool+" %", percFemaleHighSchool),
  	                new PieChart.Data("Masters = "+percFemaleMasters+" %", percFemaleMasters),
@@ -331,7 +328,7 @@ public class AnalisiDatiController {
     	     pieChart2.setLegendSide(Side.RIGHT);
     	     
     	     
-    	     ObservableList list3 = FXCollections.observableArrayList(
+    	     ObservableList<PieChart.Data> list3 = FXCollections.observableArrayList(
   	                new PieChart.Data("College = "+percMaleCollege+" %", percMaleCollege),
   	                new PieChart.Data("High School = "+percMaleHighSchool+" %", percMaleHighSchool),
   	                new PieChart.Data("Masters = "+percMaleMasters+" %", percMaleMasters),
@@ -361,7 +358,7 @@ public class AnalisiDatiController {
      	    double percMale4 = this.model.getPercMale4();
      	    double percMale5 = this.model.getPercMale5();
      	    
-     	    ObservableList list4 = FXCollections.observableArrayList(
+     	    ObservableList<PieChart.Data> list4 = FXCollections.observableArrayList(
   	                new PieChart.Data("1 = "+percFemale1+" %", percFemale1),
   	                new PieChart.Data("2 = "+percFemale2+" %", percFemale2),
   	                new PieChart.Data("3 = "+percFemale3+" %", percFemale3),
@@ -378,7 +375,7 @@ public class AnalisiDatiController {
      	     pieChart4.setLegendSide(Side.RIGHT);
      	     
      	     
-     	    ObservableList list5 = FXCollections.observableArrayList(
+     	    ObservableList<PieChart.Data> list5 = FXCollections.observableArrayList(
   	                new PieChart.Data("1 = "+percMale1+" %", percMale1),
   	                new PieChart.Data("2 = "+percMale2+" %", percMale2),
   	                new PieChart.Data("3 = "+percMale3+" %", percMale3),
@@ -409,7 +406,7 @@ public class AnalisiDatiController {
       	    double percMaleSen4 = this.model.getPercMaleSen4();
       	    double percMaleSen5 = this.model.getPercMaleSen5();
       	    
-      	    ObservableList list6 = FXCollections.observableArrayList(
+      	    ObservableList<PieChart.Data> list6 = FXCollections.observableArrayList(
    	                new PieChart.Data("1 = "+percFemaleSen1+" %", percFemaleSen1),
    	                new PieChart.Data("2 = "+percFemaleSen2+" %", percFemaleSen2),
    	                new PieChart.Data("3 = "+percFemaleSen3+" %", percFemaleSen3),
@@ -426,7 +423,7 @@ public class AnalisiDatiController {
       	     pieChart6.setLegendSide(Side.RIGHT);
       	     
       	     
-      	    ObservableList list7 = FXCollections.observableArrayList(
+      	    ObservableList<PieChart.Data> list7 = FXCollections.observableArrayList(
    	                new PieChart.Data("1 = "+percMaleSen1+" %", percMaleSen1),
    	                new PieChart.Data("2 = "+percMaleSen2+" %", percMaleSen2),
    	                new PieChart.Data("3 = "+percMaleSen3+" %", percMaleSen3),

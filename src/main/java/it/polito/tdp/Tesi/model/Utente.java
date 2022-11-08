@@ -1,9 +1,7 @@
 package it.polito.tdp.Tesi.model;
-
-import java.util.Comparator;
 import java.util.Objects;
 
-public class Utente implements Comparable<Utente>{
+public class Utente{
 
 	int id;
 	String jobTitle;
@@ -11,23 +9,20 @@ public class Utente implements Comparable<Utente>{
 	int age;
 	int perfEval;
 	String education;
-	int educationGrade;
 	String dept;
 	int seniority;
 	int basePay;
 	int bonus;
 	
 	
-	public Utente(int id, String jobTitle, String gender, int age, int perfEval, String education, 
-			      int educationGrade, String dept, int seniority, int basePay, int bonus) {
-		super();
+	public Utente(int id, String jobTitle, String gender, int age, int perfEval, 
+			      String education, String dept, int seniority, int basePay, int bonus) {
 		this.id = id;
 		this.jobTitle = jobTitle;
 		this.gender = gender;
 		this.age = age;
 		this.perfEval = perfEval;
 		this.education = education;
-		this.educationGrade = educationGrade;
 		this.dept = dept;
 		this.seniority = seniority;
 		this.basePay = basePay;
@@ -70,13 +65,6 @@ public class Utente implements Comparable<Utente>{
 	public void setEducation(String education) {
 		this.education = education;
 	}
-	public int getEducationGrade() {
-		return educationGrade;
-	}
-	public void setEducationGrade(int educationGrade) {
-		this.educationGrade = educationGrade;
-	}
-
 	public String getDept() {
 		return dept;
 	}
@@ -122,13 +110,5 @@ public class Utente implements Comparable<Utente>{
 		return  id + ", " + jobTitle + ", "+ gender + ", " + age
 				+ ", " + perfEval + ", " + education + ", " + dept + ", " + seniority
 				+ ", " + basePay + ", " + bonus;
-	}
-
-	@Override
-	public int compareTo(Utente o) {
-		// TODO Auto-generated method stub
-		return o.getPerfEval()-this.getPerfEval();
-	}
-	
-	
+	}	
 }
