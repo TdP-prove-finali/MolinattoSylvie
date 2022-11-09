@@ -58,6 +58,9 @@ public class AnalisiDatiController {
     @FXML // fx:id="btnAnalizza"
     private Button btnAnalizza; // Value injected by FXMLLoader
     
+    @FXML // fx:id="btnClear"
+    private Button btnClear; // Value injected by FXMLLoader
+
     @FXML // fx:id="btnRicercaPersonale"
     private Button btnRicercaPersonale; // Value injected by FXMLLoader
 
@@ -115,11 +118,13 @@ public class AnalisiDatiController {
     	
     	boolean updateReceived=true;
     	txtResult.clear();
+    	txtInfo.clear();
     	String jobTitle = this.cmbJobTitle.getValue();
     	
     	
     	if(jobTitle=="" || jobTitle==null) {
-    		txtInfo.appendText("Seleziona un lavoro!\n");
+    		txtInfo.setStyle("-fx-text-fill: red; ");
+    		txtInfo.appendText("Seleziona un settore lavorativo!\n");
     	}
     	else {
     		
@@ -129,7 +134,7 @@ public class AnalisiDatiController {
     		 ObservableList<PieChart.Data> list1 = FXCollections.observableArrayList(
     	                new PieChart.Data("Percentuale uomini = "+this.model.getPercentualeMaschile()+" %", this.model.getPercentualeMaschile()),
     	                new PieChart.Data("Percentuale donne = "+this.model.getPercentualeFemminile()+" %", this.model.getPercentualeFemminile()));
-    	     pieChart1.setData(list1);
+    		 pieChart1.setData(list1);
     	     pieChart1.setClockwise(true); 
     	     pieChart1.setLabelsVisible(true);
     	     pieChart1.setStartAngle(180);     
@@ -438,9 +443,78 @@ public class AnalisiDatiController {
       	     pieChart7.setVisible(true);
       	     pieChart7.setLabelLineLength(10);
       	     pieChart7.setLegendSide(Side.RIGHT);
-    	     
+      	     
+      	     
+      	     this.txtResult.appendText("LEGENDA\n");
+      	     this.txtResult.appendText("Seniority = livello di anzianità di servizio, ossia il numero di anni di esperienza. Può assumere valori interi compresi tra 1 e 5\n");	
+    	     this.txtResult.appendText("Performance Evaluation Score = punteggio assegnato alle performance lavorative del professionista. Può assumere valori interi compresi tra 1 e 5\n");
     	     
     	}
+    }
+    
+    @FXML
+    void clear(ActionEvent event) {
+
+    	boolean updateReceived=true;
+    	
+    	this.cmbJobTitle.setValue(null);
+    	this.pieChart1.getData().clear();
+    	this.pieChart2.getData().clear();
+    	this.pieChart3.getData().clear();
+    	this.pieChart4.getData().clear();
+    	this.pieChart5.getData().clear();
+    	this.pieChart6.getData().clear();
+    	this.pieChart7.getData().clear();
+    	
+    	ObservableList<Series<String, Double>> allSeriesBonus = barChartBonus.getData();
+    	if (updateReceived) {
+   	        for (XYChart.Series<String, Double> series : allSeriesBonus) {
+   	            for (XYChart.Data<String, Double> data : series.getData()) {
+   	                Node node = data.getNode();
+   	                Parent parent = node.parentProperty().get();
+   	                if (parent != null && parent instanceof Group) {
+   	                    Group group = (Group) parent;
+   	                    group.getChildren().clear();
+   	                }
+   	            }
+   	        }
+   	        allSeriesBonus.clear();
+   	     }
+    	
+    	 ObservableList<Series<String, Double>> allSeries2 = barChart2.getData();
+   	     
+			 if (updateReceived) {
+   	        for (XYChart.Series<String, Double> series : allSeries2) {
+   	            for (XYChart.Data<String, Double> data : series.getData()) {
+   	                Node node = data.getNode();
+   	                Parent parent = node.parentProperty().get();
+   	                if (parent != null && parent instanceof Group) {
+   	                    Group group = (Group) parent;
+   	                    group.getChildren().clear();
+   	                }
+   	            }
+   	        }
+   	        allSeries2.clear();
+   	     }
+			 
+         ObservableList<Series<String, Double>> allSeries1 = barChart1.getData();
+       	     
+ 			 if (updateReceived) {
+       	        for (XYChart.Series<String, Double> series : allSeries1) {
+       	            for (XYChart.Data<String, Double> data : series.getData()) {
+       	                Node node = data.getNode();
+       	                Parent parent = node.parentProperty().get();
+       	                if (parent != null && parent instanceof Group) {
+       	                    Group group = (Group) parent;
+       	                    group.getChildren().clear();
+       	                }
+       	            }
+       	        }
+       	        allSeries1.clear();
+       	     }
+ 			 
+ 		this.txtInfo.clear();
+ 		this.txtResult.clear();
     }
     
     @FXML
@@ -494,6 +568,7 @@ public class AnalisiDatiController {
     	 assert barChart1 != null : "fx:id=\"barChart1\" was not injected: check your FXML file 'Scene.fxml'.";
     	 assert barChartBonus != null : "fx:id=\"barChartBonus\" was not injected: check your FXML file 'Scene.fxml'.";
          assert btnAnalizza != null : "fx:id=\"btnAnalizza\" was not injected: check your FXML file 'Scene.fxml'.";
+         assert btnClear != null : "fx:id=\"btnClear\" was not injected: check your FXML file 'ScenaAnalisiDati.fxml'.";
          assert btnRicercaPersonale != null : "fx:id=\"btnRicercaPersonale\" was not injected: check your FXML file 'Scene.fxml'.";
          assert cmbJobTitle != null : "fx:id=\"cmbJobTitle\" was not injected: check your FXML file 'Scene.fxml'.";
          assert pieChart1 != null : "fx:id=\"pieChart1\" was not injected: check your FXML file 'Scene.fxml'.";

@@ -1,6 +1,5 @@
 package it.polito.tdp.Tesi.db;
 
-import it.polito.tdp.Tesi.model.Model;
 
 public class TestDAO {
 	

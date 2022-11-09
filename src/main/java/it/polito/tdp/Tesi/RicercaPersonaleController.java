@@ -47,6 +47,9 @@ public class RicercaPersonaleController {
 
     @FXML // fx:id="btnCerca"
     private Button btnCerca; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="btnClear"
+    private Button btnClear; // Value injected by FXMLLoader
 
     @FXML // fx:id="cmbEdDS"
     private ComboBox<String> cmbEdDS; // Value injected by FXMLLoader
@@ -472,6 +475,50 @@ public class RicercaPersonaleController {
     }
     
     @FXML
+    void clear(ActionEvent event) {
+    	this.sldDataScientist.setValue(0);
+    	this.sldDriver.setValue(0);
+    	this.sldFinancialAnalyst.setValue(0);
+    	this.sldGraphicDesigner.setValue(0);
+    	this.sldIT.setValue(0);
+    	this.sldManager.setValue(0);
+    	this.sldMarketingAssociate.setValue(0);
+    	this.sldSalesAssociate.setValue(0);
+    	this.sldSoftwareEngineer.setValue(0);
+    	this.sldWarehouseAssociate.setValue(0);
+    	
+    	this.cmbEdDriver.setValue(null);
+    	this.cmbEdDS.setValue(null);
+    	this.cmbEdFA.setValue(null);
+    	this.cmbEdGD.setValue(null);
+    	this.cmbEdIT.setValue(null);
+    	this.cmbEdMA.setValue(null);
+    	this.cmbEdManager.setValue(null);
+    	this.cmbEdSA.setValue(null);
+    	this.cmbEdSE.setValue(null);
+    	this.cmbEdWA.setValue(null);
+    	
+    	this.cmbSenDriver.setValue(null);
+    	this.cmbSenDS.setValue(null);
+    	this.cmbSenFA.setValue(null);
+    	this.cmbSenGD.setValue(null);
+    	this.cmbSenIT.setValue(null);
+    	this.cmbSenMA.setValue(null);
+    	this.cmbSenManager.setValue(null);
+    	this.cmbSenSA.setValue(null);
+    	this.cmbSenSE.setValue(null);
+    	this.cmbSenWA.setValue(null);
+    	
+    	this.tableView1.getItems().clear();
+    	this.tableView2.getItems().clear();
+    	this.pieChartRicorsione1.getData().clear();
+    	this.pieChartRicorsione2.getData().clear();
+    	this.txtField1.clear();
+    	this.txtField2.clear();
+    }
+    
+    
+    @FXML
     void analisiDati(ActionEvent event) {
     	Stage stage = null;
         BorderPane root = null;
@@ -519,7 +566,8 @@ public class RicercaPersonaleController {
     void initialize() {
     	assert btnAnalisiDati != null : "fx:id=\"btnAnalisiDati\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
     	assert btnCerca != null : "fx:id=\"btnCerca\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
-        assert cmbEdDS != null : "fx:id=\"cmbEdDS\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+    	assert btnClear != null : "fx:id=\"btnClear\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
+    	assert cmbEdDS != null : "fx:id=\"cmbEdDS\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert cmbEdDriver != null : "fx:id=\"cmbEdDriver\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert cmbEdFA != null : "fx:id=\"cmbEdFA\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";
         assert cmbEdGD != null : "fx:id=\"cmbEdGD\" was not injected: check your FXML file 'ScenaRicercaPersonale.fxml'.";

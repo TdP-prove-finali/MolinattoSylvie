@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -29,13 +30,18 @@
                            <children>
                               <HBox alignment="CENTER" style="-fx-background-color: beige;">
                                  <children>
-                                    <ComboBox fx:id="cmbJobTitle" promptText="Job Title" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css">
+                                    <ComboBox fx:id="cmbJobTitle" promptText="Job Title" style="-fx-background-color: green;">
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </HBox.margin>
                                        <padding>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
+                                       <stylesheets>
+                                          <URL value="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" />
+                                          <URL value="@../../../../../OneDrive/Desktop/css/Styles.css" />
+                                          <URL value="@../../../../../OneDrive/Desktop/css/Styles.css" />
+                                       </stylesheets>
                                     </ComboBox>
                                     <Button fx:id="btnAnalizza" mnemonicParsing="false" onAction="#Analizza" style="-fx-background-color: green;" text="Analizza" textFill="WHITE">
                                        <HBox.margin>
@@ -178,9 +184,9 @@
                                     </PieChart>
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER" style="-fx-background-color: beige;">
+                              <HBox alignment="CENTER" fillHeight="false" style="-fx-background-color: beige;">
                                  <children>
-                                    <TextArea fx:id="txtResult" disable="true" editable="false" prefWidth="700.0" style="-fx-border-color: black;">
+                                    <TextArea fx:id="txtResult" disable="true" editable="false" minHeight="100.0" style="-fx-border-color: green;" wrapText="true">
                                        <padding>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
@@ -192,6 +198,14 @@
                               </HBox>
                               <HBox alignment="CENTER" style="-fx-background-color: beige;">
                                  <children>
+                                    <Button fx:id="btnClear" mnemonicParsing="false" onAction="#clear" style="-fx-background-color: green;" text="Clear" textFill="WHITE">
+                                       <HBox.margin>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                       </padding>
+                                    </Button>
                                     <Button fx:id="btnRicercaPersonale" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ricercaPersonale" style="-fx-background-color: green;" text="Effettua Ricerca del Personale" textFill="WHITE">
                                        <padding>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -207,9 +221,6 @@
                      </content>
                   </Tab>
                </tabs>
-               <padding>
-                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-               </padding>
             </TabPane>
          </content>
       </ScrollPane>
@@ -223,7 +234,7 @@
             <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
          </padding>
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
    </top>

@@ -31,7 +31,7 @@
             <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
          </padding>
          <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
    </top>
@@ -319,7 +319,7 @@
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
                                     </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" text="SOLUZIONE EQUIGENERA" textFill="#05772b">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" text="SOLUZIONE EQUIGENERE" textFill="#05772b">
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="325.0" right="4.0" top="4.0" />
                                        </HBox.margin>
@@ -411,6 +411,7 @@
                               </HBox>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: beige;">
                                  <children>
+                                    <Button fx:id="btnClear" mnemonicParsing="false" onAction="#clear" style="-fx-background-color: green;" text="Clear" textFill="WHITE" />
                                     <Button fx:id="btnAnalisiDati" alignment="CENTER" mnemonicParsing="false" onAction="#analisiDati" style="-fx-background-color: green;" text="Ritorna all'analisi dei dati" textAlignment="CENTER" textFill="WHITE">
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />

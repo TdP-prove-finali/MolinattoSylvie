@@ -1,7 +1,6 @@
 package it.polito.tdp.Tesi.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -479,7 +478,7 @@ public class Model {
 	}
 
 	public double getPercMaleSen5() {
-		return  Math.round(percMale5*100.0)/100.0;
+		return  Math.round(percMaleSen5*100.0)/100.0;
 	}
 
 }
