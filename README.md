@@ -9,6 +9,6 @@ Istruzioni per l'installazione e l'utilizzo:
 
 3- Caricare il data-set ('uk-gender-pay-gap.sql') presente nell'apposita cartella (denominata 'databse') sul proprio database MySQL;
 
-4- Guardare il video illustrativo del funzionamento dell'applicazione al seguente link;
+4- Guardare il video illustrativo del funzionamento dell'applicazione al seguente link: https://www.youtube.com/watch?v=OoIEJGWtNPE
 
 5- Eseguire la classe 'Main' per lanciare il programma;
