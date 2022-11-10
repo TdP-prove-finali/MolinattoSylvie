@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -30,18 +29,13 @@
                            <children>
                               <HBox alignment="CENTER" style="-fx-background-color: beige;">
                                  <children>
-                                    <ComboBox fx:id="cmbJobTitle" promptText="Job Title" style="-fx-background-color: green;">
+                                    <ComboBox fx:id="cmbJobTitle" promptText="Job Title" style="-fx-background-color: green;" stylesheets="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css">
                                        <HBox.margin>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </HBox.margin>
                                        <padding>
                                           <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                        </padding>
-                                       <stylesheets>
-                                          <URL value="@../../../../../OneDrive/Desktop/css/comboBoxStyle.css" />
-                                          <URL value="@../../../../../OneDrive/Desktop/css/Styles.css" />
-                                          <URL value="@../../../../../OneDrive/Desktop/css/Styles.css" />
-                                       </stylesheets>
                                     </ComboBox>
                                     <Button fx:id="btnAnalizza" mnemonicParsing="false" onAction="#Analizza" style="-fx-background-color: green;" text="Analizza" textFill="WHITE">
                                        <HBox.margin>
