@@ -1,0 +1,6 @@
+.combo-box .list-cell 
+{
+    -fx-background: white;
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
